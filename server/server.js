@@ -13,7 +13,10 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://ai-expenses-tracker9604.netlify.app/",
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use("/api/auth", authRoute);
@@ -53,10 +56,4 @@ app.use((req, res, next) => {
 
 app.get("/api/test", (req, res) => {
   res.json({ message: "Backend connected successfully 🚀" });
-});
-
-app.use(express.static(path.join(__dirname, "dist")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
