@@ -1,0 +1,132 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url("../assets/dashboard.png");
+}
+.dashboard-body {
+    text-align: center;
+
+}
+
+
+form{
+    display: flex;
+    position:absolute;
+    align-items: flex-start;
+    flex-direction: column;
+    top: 10px;
+    left: 10px;
+    padding: 20px;
+    gap: 15px;
+    margin-left:30px ;
+
+    
+}
+.dashboard-top{
+    font-weight: 700;
+    font-size: larger;
+    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #38BDF8;
+    display: inline-flex;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 280px;
+    background-color: #042032;
+}
+
+.logout{
+    padding: 3px;
+    margin-top: 10px;
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    color: #F075AE;
+    background: linear-gradient(135deg, #d4af37, #f9e076);
+
+}
+.logout:hover{
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.15);
+}
+.lower-part{
+    padding: 20px;
+    display: inline-flex;
+    width: 100%;
+    gap: 25px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+
+}
+.prediction-box{
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px #93C5FD ;
+    padding: 20px;
+    background-color:linear-gradient(135deg, #00D4FF → #FF00E6) ;
+    color: white;
+
+
+}
+.list{
+    color: white;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px #93C5FD ;
+    width: 490px;
+    font-weight: 700;
+}
+.list:has(.list-item:empty){
+    display:none;
+}
+
+button {
+    background: rgba(0, 224, 255, 0.15);
+    color: #00E0FF;
+    border: 1px solid #00E0FF;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+}
+
+/* hover */
+button:hover {
+    background: #00E0FF;
+    color: #0A192F;
+    box-shadow: 0 0 10px #00E0FF, 0 0 20px #00E0FF;
+    transform: scale(1.05);
+}
+
+
+.chart-box{
+    width: 100%;
+    height: 380px;
+    padding: 30px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px #93C5FD ;
+    margin-left: 20px;
+    margin-top: 30px;
+    background-color: rgba(255, 0, 0, 0.05);
+    border: 3px solid rgba(255,255,255,0.1) ;
+    color: white;
+
+}
+.expensechart{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 40px auto;
+    padding: 0 40px;
+}
+
