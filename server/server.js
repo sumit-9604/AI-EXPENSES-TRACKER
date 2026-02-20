@@ -13,10 +13,14 @@ dotenv.config();
 
 const app = express();
 
+
 app.use(cors({
-  origin: "https://ai-expenses-tracker9604.netlify.app/",
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use("/api/auth", authRoute);
