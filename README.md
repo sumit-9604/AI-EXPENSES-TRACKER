@@ -146,3 +146,9 @@ This project is open source and free to use.
 ##DEPENDENCIES##
 <img width="1567" height="834" alt="Screenshot 2026-02-18 233547" src="https://github.com/user-attachments/assets/9ba5c143-7cf7-4bfa-8017-2e06bcde96d9" />
 
+<img width="1783" height="613" alt="Screenshot 2026-02-18 233519" src="https://github.com/user-attachments/assets/bcc871a2-d519-42d5-bd10-246305fc1f82" />
+
+###SCREENSHOTS###
+<img width="1919" height="970" alt="Screenshot 2026-02-22 174600" src="https://github.com/user-attachments/assets/cd660b63-9b7d-4b02-b779-e11830595343" />
+<img width="1900" height="970" alt="Screenshot 2026-02-22 174723" src="https://github.com/user-attachments/assets/b4c1685c-405c-4733-9d02-599e3d757347" />
+<img width="1901" height="965" alt="Screenshot 2026-02-22 174738" src="https://github.com/user-attachments/assets/887f377a-a50b-4ac4-afac-04bdaf483617" />
