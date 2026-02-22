@@ -1,4 +1,5 @@
 /* eslint-env node */
+import connectDB from "./db.js";
 import path from "path";
 import express from 'express';
 import dotenv from "dotenv";
@@ -42,6 +43,15 @@ app.use("/api/expenses", expenseRoutes);
 app.use("/api/analytics", analyticRoute);
 app.use("/api/user", userRoutes);
 
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("Server running");
+  });
+});
+
+app.get("/", (req, res) => {
+  res.send("Server alive");
+});
 
 app.get("/api/test", (req, res) => {
   res.json({ message: "Backend connected successfully 🚀" });
