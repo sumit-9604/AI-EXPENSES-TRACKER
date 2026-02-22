@@ -150,5 +150,5 @@ This project is open source and free to use.
 
 ###SCREENSHOTS###
 <img width="1919" height="970" alt="Screenshot 2026-02-22 174600" src="https://github.com/user-attachments/assets/cd660b63-9b7d-4b02-b779-e11830595343" />
-<img width="1900" height="970" alt="Screenshot 2026-02-22 174723" src="https://github.com/user-attachments/assets/b4c1685c-405c-4733-9d02-599e3d757347" />
-<img width="1901" height="965" alt="Screenshot 2026-02-22 174738" src="https://github.com/user-attachments/assets/887f377a-a50b-4ac4-afac-04bdaf483617" />
+<img width="1919" height="972" alt="Screenshot 2026-02-22 195251" src="https://github.com/user-attachments/assets/ca924875-0b67-4ff3-9864-94b7acd4dc8f" />
+<img width="1918" height="960" alt="Screenshot 2026-02-22 195259" src="https://github.com/user-attachments/assets/d9c94c8c-e160-456d-8454-abbe8c8aaa5c" />
