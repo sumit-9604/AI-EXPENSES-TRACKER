@@ -125,7 +125,7 @@ Database hosted on MongoDB Atlas
 
 Sumit Chaudhary
 
-GitHub: https://github.com/yourusername
+GitHub: https://github.com/sumit-9604
 LinkedIn:www.linkedin.com/in/sumit-chaudhary9604
 
 ---
@@ -143,4 +143,6 @@ LinkedIn:www.linkedin.com/in/sumit-chaudhary9604
 
 This project is open source and free to use.
 
+##DEPENDENCIES##
+<img width="1567" height="834" alt="Screenshot 2026-02-18 233547" src="https://github.com/user-attachments/assets/9ba5c143-7cf7-4bfa-8017-2e06bcde96d9" />
 
