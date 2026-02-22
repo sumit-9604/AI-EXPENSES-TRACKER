@@ -13,7 +13,7 @@ const __dirname = path.resolve();
 dotenv.config();
 
 const app = express();
-
+const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -63,7 +63,7 @@ const startServer = async () => {
     });
     console.log("✅ MongoDB connected");
 
-    const PORT = process.env.PORT || 5000;
+
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
     });
