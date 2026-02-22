@@ -1,16 +1,146 @@
-# React + Vite
+# AI Expense Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered full-stack expense tracking web application that helps users manage expenses, analyze spending, and predict future expenses.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Frontend: https://ai-expenses-tracker9604.netlify.app
+Backend: https://ai-expenses-tracker.onrender.com
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+• User authentication (Signup/Login)
+• Add, delete, and view expenses
+• AI-based expense categorization
+• Expense prediction system
+• Analytics dashboard with charts
+• Secure REST API
+• Fully deployed frontend and backend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+Frontend:
+
+* React.js
+* Vite
+* Chart.js
+* Axios
+
+Backend:
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+
+Deployment:
+
+* Netlify (Frontend)
+* Render (Backend)
+* MongoDB Atlas (Database)
+
+## Project Structure
+
+server/
+
+* models/
+* routes/
+* ai/
+* db.js
+* server.js
+
+client/
+
+* components/
+* pages/
+* api/
+
+## Installation (Local Setup)
+
+Clone repository
+
+git clone https://github.com/yourusername/ai-expenses-tracker.git
+
+Install backend dependencies
+
+cd server
+npm install
+
+Install frontend dependencies
+
+cd client
+npm install
+
+---
+
+## Environment Variables
+
+Create .env file in server folder:
+
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_secret
+PORT=5000
+
+---
+
+## Run Locally
+
+Backend:
+
+npm run dev
+
+Frontend:
+
+npm run dev
+
+---
+
+## API Endpoints
+
+Auth:
+POST /api/auth/register
+POST /api/auth/login
+
+Expenses:
+GET /api/expenses
+POST /api/expenses
+DELETE /api/expenses/:id
+
+Analytics:
+GET /api/analytics
+
+---
+
+## Deployment
+
+Frontend deployed on Netlify
+Backend deployed on Render
+Database hosted on MongoDB Atlas
+
+---
+
+## Author
+
+Sumit Chaudhary
+
+GitHub: https://github.com/yourusername
+LinkedIn:www.linkedin.com/in/sumit-chaudhary9604
+
+---
+
+## Future Improvements
+
+• Real AI model integration
+• Mobile app version
+• Export reports
+• Advanced predictions
+
+---
+
+## License
+
+This project is open source and free to use.
+
+
