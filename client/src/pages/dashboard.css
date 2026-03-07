@@ -11,6 +11,10 @@ body{
 
 }
 
+.dashboard-text{
+    font-size: 40px;
+}
+
 
 form{
     display: flex;
@@ -36,19 +40,21 @@ form{
     position: relative;
     align-items: center;
     justify-content: center;
-    height: 280px;
+    height: 260px;
     background-color: #042032;
 }
 
 .logout{
     padding: 3px;
     margin-top: 10px;
-    width: 80px;
-    height: 30px;
+    font-weight: 700;
+    width: 100px;
+    height: 40px;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.4); 
-    color: #F075AE;
+    color: #758df0;
     background: linear-gradient(135deg, #d4af37, #f9e076);
+    font-size: large;
 
 }
 .logout:hover{
