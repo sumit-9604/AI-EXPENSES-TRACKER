@@ -13,7 +13,7 @@ async function connectDB() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(process.env.MONGO_URI).then((mongoose) => {
+    cached.promise = mongoose.connect(process.env.DATABASE_URL).then((mongoose) => {
       console.log("MongoDB connected");
       return mongoose;
     });

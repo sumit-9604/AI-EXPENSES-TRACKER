@@ -1,8 +1,12 @@
 /* eslint-env node */
+
+import dotenv from "dotenv";
+dotenv.config();
+console.log("DATABASE_URL:", process.env.DATABASE_URL);
 import connectDB from "./db.js";
 import path from "path";
 import express from 'express';
-import dotenv from "dotenv";
+
 import mongoose from "mongoose";
 import cors from "cors";
 import userRoutes from "./models/user.js";
@@ -10,7 +14,7 @@ import authRoute from "./routes/authroutes.js";
 import expenseRoutes from "./routes/expensesroutes.js"
 import analyticRoute from "./routes/analyticroutes.js";
 const __dirname = path.resolve();
-dotenv.config();
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
