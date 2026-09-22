@@ -11,32 +11,31 @@ import {
   Calendar
 } from "lucide-react";
 
-// Apple-style soft pastel category badges
 const CATEGORY_MAP = {
   food: {
-    label: "Food & Dining",
+    label: "Food",
     icon: Utensils,
-    badge: "bg-orange-500/10 text-orange-300 border-orange-500/20"
+    badge: "bg-amber-500/20 text-amber-300 border-2 border-amber-400/50"
   },
   travel: {
-    label: "Travel & Transit",
+    label: "Travel",
     icon: Plane,
-    badge: "bg-sky-500/10 text-sky-300 border-sky-500/20"
+    badge: "bg-sky-500/20 text-sky-300 border-2 border-sky-400/50"
   },
   shopping: {
     label: "Shopping",
     icon: ShoppingBag,
-    badge: "bg-purple-500/10 text-purple-300 border-purple-500/20"
+    badge: "bg-pink-500/20 text-pink-300 border-2 border-pink-400/50"
   },
   bills: {
-    label: "Bills & Utilities",
+    label: "Bills",
     icon: FileText,
-    badge: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"
+    badge: "bg-purple-500/20 text-purple-300 border-2 border-purple-400/50"
   },
   other: {
     label: "Other",
     icon: Package,
-    badge: "bg-zinc-500/10 text-zinc-300 border-zinc-500/20"
+    badge: "bg-slate-500/20 text-slate-200 border-2 border-slate-400/50"
   }
 };
 
@@ -51,40 +50,42 @@ export default function Expenseslist({ expenses = [], onDelete }) {
   });
 
   return (
-    <div className="h-full flex flex-col justify-between backdrop-blur-2xl bg-zinc-900/50 border border-white/[0.08] rounded-2xl p-6 shadow-xl shadow-black/20">
+    <div className="h-full flex flex-col justify-between backdrop-blur-xl bg-[#0A192F]/90 border-2 border-sky-400/50 rounded-3xl p-6 shadow-[0_8px_32px_rgba(56,189,248,0.25)]">
       <div>
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-tight">Recent Outflows</h3>
-            <p className="text-xs text-zinc-400">
-              {expenses.length} {expenses.length === 1 ? "transaction" : "transactions"} logged
+            <h3 className="text-base sm:text-lg font-black text-[#38BDF8] tracking-wide uppercase">
+              Recent Transactions
+            </h3>
+            <p className="text-xs sm:text-sm font-bold text-sky-200">
+              {expenses.length} {expenses.length === 1 ? "expense" : "expenses"} recorded
             </p>
           </div>
 
           {/* Search Box */}
-          <div className="relative sm:w-48">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+          <div className="relative sm:w-52">
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-sky-400 font-bold" />
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search expenses..."
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
-              className="w-full pl-8 pr-3 py-1.5 bg-zinc-950/80 border border-white/[0.08] rounded-lg text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30"
+              className="w-full pl-9 pr-3 py-2 bg-[#050D1A] border-2 border-sky-400/60 rounded-xl text-xs sm:text-sm font-bold text-white placeholder-sky-300/60 focus:outline-none focus:border-sky-300 focus:ring-1 focus:ring-sky-300"
             />
           </div>
         </div>
 
         {/* Category Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-4 scrollbar-none">
           {["all", "food", "travel", "shopping", "bills", "other"].map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-lg text-xs font-medium capitalize shrink-0 transition-all cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black capitalize shrink-0 transition-all cursor-pointer ${
                 selectedCategory === cat
-                  ? "bg-white text-zinc-950 font-semibold shadow-sm"
-                  : "bg-zinc-950/60 text-zinc-400 hover:text-white border border-white/[0.06]"
+                  ? "bg-[#38BDF8] text-slate-950 shadow-md shadow-sky-400/40"
+                  : "bg-[#050D1A] text-sky-200 hover:text-white border border-sky-400/40"
               }`}
             >
               {cat}
@@ -92,28 +93,29 @@ export default function Expenseslist({ expenses = [], onDelete }) {
           ))}
         </div>
 
-        {/* Transaction Rows */}
+        {/* Expenses List Rows */}
         {filteredExpenses.length === 0 ? (
           <div className="py-12 flex flex-col items-center justify-center text-center">
-            <div className="w-10 h-10 rounded-xl bg-zinc-900 flex items-center justify-center text-zinc-500 mb-2.5 border border-white/[0.06]">
-              <Receipt className="w-5 h-5" />
+            <div className="w-12 h-12 rounded-2xl bg-[#050D1A] flex items-center justify-center text-sky-400 mb-3 border border-sky-400/40">
+              <Receipt className="w-6 h-6" />
             </div>
-            <p className="text-xs font-medium text-zinc-300">No transactions recorded</p>
-            <p className="text-[11px] text-zinc-500 mt-0.5">
+            <p className="text-sm font-black text-white">No transactions found</p>
+            <p className="text-xs font-bold text-sky-200 mt-1">
               {expenses.length === 0
-                ? "Add an expense above to start tracking."
-                : "No items match your search filter."}
+                ? "Add an expense above to populate your list."
+                : "No expenses match the current filter."}
             </p>
           </div>
         ) : (
-          <div className="space-y-2 max-h-[420px] overflow-y-auto pr-1">
+          <div className="space-y-2.5 max-h-[420px] overflow-y-auto pr-1">
             {filteredExpenses.map((e) => {
               const catConfig = CATEGORY_MAP[e.category] || CATEGORY_MAP.other;
               const Icon = catConfig.icon;
               const dateObj = new Date(e.createdAt);
               const formattedDate = dateObj.toLocaleDateString("en-IN", {
                 month: "short",
-                day: "numeric"
+                day: "numeric",
+                year: "numeric"
               });
               const formattedTime = dateObj.toLocaleTimeString("en-IN", {
                 hour: "2-digit",
@@ -123,25 +125,25 @@ export default function Expenseslist({ expenses = [], onDelete }) {
               return (
                 <div
                   key={e._id}
-                  className="group flex items-center justify-between p-3.5 rounded-xl bg-zinc-950/60 hover:bg-zinc-950 border border-white/[0.06] hover:border-white/[0.12] transition-all"
+                  className="group flex items-center justify-between p-4 rounded-2xl bg-[#050D1A] border-2 border-sky-400/40 hover:border-sky-300 transition-all shadow-sm"
                 >
-                  {/* Left: Icon & Description */}
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className={`p-2 rounded-lg border ${catConfig.badge} shrink-0`}>
-                      <Icon className="w-4 h-4" />
+                  {/* Left: Icon & Info */}
+                  <div className="flex items-center gap-3.5 min-w-0">
+                    <div className={`p-2.5 rounded-xl ${catConfig.badge} shrink-0`}>
+                      <Icon className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-sm text-zinc-100 truncate">
+                        <span className="font-extrabold text-sm sm:text-base text-white truncate">
                           {e.title}
                         </span>
-                        <span className={`px-2 py-0.5 rounded-md text-[10px] font-medium border uppercase tracking-wider ${catConfig.badge}`}>
+                        <span className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider ${catConfig.badge}`}>
                           {e.category}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 text-[11px] text-zinc-500 mt-0.5">
+                      <div className="flex items-center gap-2 text-xs font-bold text-sky-200 mt-0.5">
                         <span className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
+                          <Calendar className="w-3.5 h-3.5 text-sky-400" />
                           {formattedDate} • {formattedTime}
                         </span>
                       </div>
@@ -149,9 +151,9 @@ export default function Expenseslist({ expenses = [], onDelete }) {
                   </div>
 
                   {/* Right: Amount & Delete */}
-                  <div className="flex items-center gap-3 shrink-0 ml-3">
+                  <div className="flex items-center gap-4 shrink-0 ml-3">
                     <div className="text-right">
-                      <div className="text-sm font-semibold text-white">
+                      <div className="text-base sm:text-lg font-black text-[#38BDF8]">
                         ₹{Number(e.amount).toLocaleString("en-IN")}
                       </div>
                     </div>
@@ -160,7 +162,7 @@ export default function Expenseslist({ expenses = [], onDelete }) {
                       type="button"
                       onClick={() => onDelete(e._id)}
                       title="Delete expense"
-                      className="p-1.5 rounded-lg text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 transition-all cursor-pointer"
+                      className="p-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/40 text-rose-300 border border-rose-400/50 transition-all cursor-pointer"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -174,9 +176,9 @@ export default function Expenseslist({ expenses = [], onDelete }) {
 
       {/* Footer Total */}
       {filteredExpenses.length > 0 && (
-        <div className="pt-3.5 mt-3.5 border-t border-white/[0.06] flex items-center justify-between text-xs text-zinc-400">
-          <span>Total Filtered</span>
-          <span className="text-sm font-semibold text-white">
+        <div className="pt-4 mt-4 border-t-2 border-sky-400/30 flex items-center justify-between text-xs sm:text-sm font-extrabold text-sky-200">
+          <span>Filtered Total</span>
+          <span className="text-base sm:text-lg font-black text-white">
             ₹{filteredExpenses.reduce((acc, curr) => acc + Number(curr.amount || 0), 0).toLocaleString("en-IN")}
           </span>
         </div>

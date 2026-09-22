@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import API from "../api";
 import { AuthContext } from "../content";
+import loginBg from "../assets/ChatGPT Image Feb 15, 2026, 01_44_55 PM.png";
 import { 
   Mail, 
   Lock, 
   ArrowRight, 
   AlertCircle,
-  CreditCard,
+  TrendingUp,
   PieChart,
   ShieldCheck
 } from "lucide-react";
@@ -35,7 +36,7 @@ export default function Login() {
           login(res.data.token);
         } else {
           setIsRegister(false);
-          alert("Account created successfully. Please sign in.");
+          alert("Account created successfully! Please sign in.");
         }
       } else {
         const res = await API.post("/auth/login", data);
@@ -54,36 +55,36 @@ export default function Login() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-[#09090b] text-zinc-100 overflow-hidden">
-      {/* Subtle Apple-style radial ambient light */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-zinc-800/15 rounded-full blur-3xl pointer-events-none" />
+    <div 
+      className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-cover bg-center bg-no-repeat overflow-hidden"
+      style={{ backgroundImage: `url("${loginBg}")` }}
+    >
+      {/* Light translucent overlay that preserves the painting's natural visibility */}
+      <div className="absolute inset-0 bg-[#0A192F]/30 backdrop-blur-[1px]" />
 
       {/* Main Container */}
-      <div className="relative w-full max-w-sm z-10">
+      <div className="relative w-full max-w-md z-10">
         {/* Brand Header */}
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-zinc-900 border border-white/[0.08] flex items-center justify-center text-zinc-100 shadow-lg shadow-black/40">
-            <CreditCard className="w-6 h-6" />
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-            Expenses
+        <div className="text-center mb-6">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-wider text-[#38BDF8] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] uppercase">
+            AI Expenses Tracker
           </h1>
-          <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-            Personal finance and budget tracking
+          <p className="text-white font-bold text-sm sm:text-base mt-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            Smart Financial Management & Real-Time Analytics
           </p>
         </div>
 
-        {/* Frosted Glass Card */}
-        <div className="backdrop-blur-2xl bg-zinc-900/60 border border-white/[0.08] rounded-3xl p-6 sm:p-7 shadow-2xl shadow-black/60">
-          {/* Segmented Control */}
-          <div className="flex p-1 bg-zinc-950/70 rounded-xl border border-white/[0.06] mb-5">
+        {/* High-Visibility Frosted Glass Card */}
+        <div className="backdrop-blur-xl bg-[#0A192F]/90 border-2 border-[#38BDF8] rounded-3xl p-7 sm:p-8 shadow-[0_8px_32px_rgba(56,189,248,0.4)]">
+          {/* Segmented Control Tabs */}
+          <div className="flex p-1.5 bg-[#050D1A] rounded-2xl border border-sky-400/40 mb-6">
             <button
               type="button"
               onClick={() => { setIsRegister(false); setError(""); }}
-              className={`flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-all cursor-pointer ${
+              className={`flex-1 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer ${
                 !isRegister 
-                  ? "bg-zinc-800 text-white shadow-sm border border-white/[0.08]" 
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-[#38BDF8] text-slate-950 shadow-md shadow-sky-400/40" 
+                  : "text-sky-200 hover:text-white"
               }`}
             >
               Sign In
@@ -91,32 +92,32 @@ export default function Login() {
             <button
               type="button"
               onClick={() => { setIsRegister(true); setError(""); }}
-              className={`flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-all cursor-pointer ${
+              className={`flex-1 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer ${
                 isRegister 
-                  ? "bg-zinc-800 text-white shadow-sm border border-white/[0.08]" 
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-[#38BDF8] text-slate-950 shadow-md shadow-sky-400/40" 
+                  : "text-sky-200 hover:text-white"
               }`}
             >
-              Register
+              Create Account
             </button>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="mb-4 flex items-start gap-2.5 p-3 rounded-xl bg-rose-950/30 border border-rose-500/20 text-rose-300 text-xs">
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-400" />
+            <div className="mb-5 flex items-start gap-2.5 p-3 rounded-xl bg-red-500/20 border-2 border-red-500/50 text-red-200 font-semibold text-xs sm:text-sm">
+              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-red-400" />
               <span>{error}</span>
             </div>
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-3.5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-zinc-300 mb-1">
-                Email
+              <label className="block text-xs font-bold text-sky-200 uppercase tracking-wider mb-1.5">
+                Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-sky-400">
                   <Mail className="w-4 h-4" />
                 </div>
                 <input
@@ -125,17 +126,17 @@ export default function Login() {
                   placeholder="name@example.com"
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
-                  className="w-full pl-10 pr-3.5 py-2.5 bg-zinc-950/80 border border-white/[0.08] rounded-xl text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-[#050D1A] border-2 border-sky-400/60 rounded-xl text-white placeholder-sky-300/60 text-sm font-bold focus:outline-none focus:border-sky-300 focus:ring-2 focus:ring-sky-300/40 transition-all shadow-inner"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-300 mb-1">
+              <label className="block text-xs font-bold text-sky-200 uppercase tracking-wider mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-sky-400">
                   <Lock className="w-4 h-4" />
                 </div>
                 <input
@@ -144,41 +145,41 @@ export default function Login() {
                   placeholder="••••••••"
                   value={data.password}
                   onChange={(e) => setData({ ...data, password: e.target.value })}
-                  className="w-full pl-10 pr-3.5 py-2.5 bg-zinc-950/80 border border-white/[0.08] rounded-xl text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-[#050D1A] border-2 border-sky-400/60 rounded-xl text-white placeholder-sky-300/60 text-sm font-bold focus:outline-none focus:border-sky-300 focus:ring-2 focus:ring-sky-300/40 transition-all shadow-inner"
                 />
               </div>
             </div>
 
-            {/* Apple-style primary white button */}
+            {/* High Visibility Action Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 py-2.5 px-4 rounded-xl bg-white hover:bg-zinc-100 text-zinc-950 font-semibold text-sm shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+              className="w-full mt-3 py-3 px-4 rounded-xl bg-gradient-to-r from-sky-400 to-cyan-400 hover:from-sky-300 hover:to-cyan-300 text-slate-950 font-black text-sm sm:text-base tracking-wide shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
             >
               {loading ? (
-                <div className="w-4 h-4 border-2 border-zinc-900/30 border-t-zinc-900 rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
-                  <span>{isRegister ? "Create Account" : "Continue"}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>{isRegister ? "REGISTER ACCOUNT" : "LOGIN TO DASHBOARD"}</span>
+                  <ArrowRight className="w-5 h-5" />
                 </>
               )}
             </button>
           </form>
 
-          {/* Minimalist Feature Icons */}
-          <div className="mt-6 pt-5 border-t border-white/[0.06] grid grid-cols-3 gap-2 text-center text-zinc-400 text-[11px]">
+          {/* Highlights */}
+          <div className="mt-8 pt-5 border-t border-sky-400/30 grid grid-cols-3 gap-2 text-center text-sky-200 text-xs font-bold">
             <div className="flex flex-col items-center gap-1">
-              <CreditCard className="w-4 h-4 text-zinc-300" />
-              <span>Spending</span>
+              <TrendingUp className="w-4 h-4 text-sky-300" />
+              <span>Predictions</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <PieChart className="w-4 h-4 text-zinc-300" />
-              <span>Insights</span>
+              <PieChart className="w-4 h-4 text-sky-300" />
+              <span>Live Charts</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <ShieldCheck className="w-4 h-4 text-zinc-300" />
-              <span>Encrypted</span>
+              <ShieldCheck className="w-4 h-4 text-sky-300" />
+              <span>Protected</span>
             </div>
           </div>
         </div>

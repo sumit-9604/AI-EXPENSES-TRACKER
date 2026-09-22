@@ -4,12 +4,12 @@ import ExpenseChart from "../components/Expensescharts";
 import PredictionCard from "../components/PredictionCard";
 import ExpenseForm from "../components/Expenseform";
 import Expenseslist from "../components/Expenseslist";
+import dashboardBg from "../assets/dashboard.png";
 import { 
   LogOut, 
   Wallet, 
-  Plus, 
-  BarChart3,
-  CreditCard
+  PlusCircle, 
+  BarChart2
 } from "lucide-react";
 
 export default function Dashboard() {
@@ -90,52 +90,56 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-100 flex flex-col selection:bg-white/20 selection:text-white">
-      {/* Apple Minimalist Navbar */}
-      <header className="sticky top-0 z-40 backdrop-blur-2xl bg-[#09090b]/80 border-b border-white/[0.08]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-          {/* Brand */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-white/[0.1] flex items-center justify-center text-white shadow-sm">
-              <CreditCard className="w-4 h-4" />
-            </div>
-            <div>
-              <h1 className="text-base font-semibold tracking-tight text-white">
-                Expenses
-              </h1>
-              <p className="hidden sm:block text-[11px] text-zinc-400">Financial Summary & Outflows</p>
-            </div>
+    <div 
+      className="min-h-screen text-white flex flex-col relative overflow-x-hidden bg-cover bg-fixed bg-center"
+      style={{ backgroundImage: `url("${dashboardBg}")` }}
+    >
+      {/* Gentle translucent overlay preserving dashboard background visibility */}
+      <div className="absolute inset-0 bg-[#0A192F]/35 backdrop-blur-[1px] pointer-events-none" />
+
+      {/* Top Header Bar */}
+      <header className="sticky top-0 z-40 backdrop-blur-xl bg-[#0A192F]/95 border-b-2 border-sky-400/50 shadow-xl shadow-sky-950/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+          {/* Brand Titles matching original aesthetic */}
+          <div>
+            <h1 className="text-xl sm:text-2xl font-black tracking-wide text-[#38BDF8] drop-shadow-sm uppercase">
+              Dashboard • My Expenses
+            </h1>
+            <p className="text-xs sm:text-sm font-bold text-sky-200">
+              AI Powered Expense Forecasting & Budget Tracking
+            </p>
           </div>
 
-          {/* Actions: Budget Chip & Logout */}
-          <div className="flex items-center gap-2.5">
+          {/* Right actions: Salary Badge & Logout */}
+          <div className="flex items-center gap-3">
             {salary > 0 && (
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-900 border border-white/[0.08] text-xs">
-                <Wallet className="w-3.5 h-3.5 text-zinc-400" />
-                <span className="text-zinc-400">Monthly Budget:</span>
-                <span className="font-semibold text-white">₹{salary.toLocaleString("en-IN")}</span>
+              <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#050D1A] border-2 border-sky-400/50 text-xs shadow-md">
+                <Wallet className="w-4 h-4 text-sky-400" />
+                <span className="font-bold text-sky-200">Budget:</span>
+                <span className="font-black text-white text-sm">₹{salary.toLocaleString("en-IN")}</span>
               </div>
             )}
 
             <button
               type="button"
               onClick={handleLogout}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-white/[0.08] text-zinc-300 hover:text-white text-xs font-medium transition-all cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white text-xs font-extrabold shadow-lg shadow-rose-900/40 transition-all cursor-pointer"
+              title="Sign out"
             >
-              <LogOut className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Sign Out</span>
+              <LogOut className="w-4 h-4" />
+              <span>Logout</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Main Container */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 z-10">
         {/* Quick Add Expense Card */}
-        <section className="backdrop-blur-2xl bg-zinc-900/50 border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-xl shadow-black/20">
-          <div className="flex items-center gap-2 mb-3.5">
-            <Plus className="w-4 h-4 text-zinc-400" />
-            <h2 className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">New Transaction</h2>
+        <section className="backdrop-blur-xl bg-[#0A192F]/90 border-2 border-sky-400/50 rounded-3xl p-6 shadow-[0_8px_32px_rgba(56,189,248,0.25)]">
+          <div className="flex items-center gap-2 mb-4">
+            <PlusCircle className="w-5 h-5 text-sky-400" />
+            <h2 className="text-base font-black text-[#38BDF8] uppercase tracking-wider">Add New Expense</h2>
           </div>
 
           <ExpenseForm
@@ -148,21 +152,23 @@ export default function Dashboard() {
         </section>
 
         {/* Visual Analytics & Charts Section */}
-        <section className="space-y-3.5">
+        <section className="space-y-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-zinc-400" />
-              <h2 className="text-sm font-semibold text-white tracking-tight">Spending Trends & Analytics</h2>
+            <div className="flex items-center gap-2.5">
+              <BarChart2 className="w-5 h-5 text-sky-400" />
+              <h2 className="text-lg sm:text-xl font-black text-[#38BDF8] tracking-wide drop-shadow-md">
+                Analytics & Charts
+              </h2>
             </div>
-            <span className="text-xs text-zinc-500">Category breakdown and trajectory</span>
+            <span className="text-xs font-bold text-sky-200">Category, Trend, Comparison & Scatter Analysis</span>
           </div>
 
           <ExpenseChart expenses={expenses} />
         </section>
 
-        {/* Summary Card & Recent Transactions Grid */}
+        {/* AI Prediction & Recent Transactions in Responsive Grid */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Monthly Budget & Prediction Card */}
+          {/* Prediction & Budget Status (5 cols) */}
           <div className="lg:col-span-5">
             <PredictionCard
               prediction={prediction}
@@ -172,7 +178,7 @@ export default function Dashboard() {
             />
           </div>
 
-          {/* Recent Outflows Ledger */}
+          {/* Transactions List (7 cols) */}
           <div className="lg:col-span-7">
             <Expenseslist
               expenses={expenses}
@@ -182,11 +188,11 @@ export default function Dashboard() {
         </section>
       </main>
 
-      {/* Minimalist Footer */}
-      <footer className="mt-auto border-t border-white/[0.06] py-5 text-center text-xs text-zinc-500">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>Expenses • Minimalist Financial Tracker</span>
-          <span className="text-zinc-600">Clean & Private</span>
+      {/* High-Visibility Footer */}
+      <footer className="mt-auto backdrop-blur-xl bg-[#0A192F]/95 border-t-2 border-sky-400/40 py-5 text-center text-xs text-sky-200 font-bold">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>AI Expense Tracker • Real-Time Financial Intelligence</span>
+          <span className="text-sky-400">High Visibility Glass Edition</span>
         </div>
       </footer>
     </div>

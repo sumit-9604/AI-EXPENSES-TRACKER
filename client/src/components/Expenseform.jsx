@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import API from "../api";
-import { Plus, Wallet, Check, Tag, IndianRupee } from "lucide-react";
+import { PlusCircle, Wallet, Check, Tag, IndianRupee } from "lucide-react";
 
 export default function ExpenseForm({
   onAdd,
@@ -65,39 +65,39 @@ export default function ExpenseForm({
 
   return (
     <div className="w-full">
-      {/* Monthly Budget Setup Prompt */}
+      {/* Monthly Salary Input (Prompted when not yet configured or requested) */}
       {showSalaryInput && (
-        <div className="mb-4 p-4 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
+        <div className="mb-5 p-4 rounded-2xl bg-[#050D1A] border-2 border-sky-400 shadow-md">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-lg bg-zinc-800 text-zinc-300">
-                <Wallet className="w-4 h-4" />
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-sky-400/20 text-sky-400 border border-sky-400/40">
+                <Wallet className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-xs sm:text-sm font-medium text-white">Set Monthly Budget</h4>
-                <p className="text-xs text-zinc-400">Establish a target budget to track your monthly spending</p>
+                <h4 className="text-sm sm:text-base font-extrabold text-white">Enter Monthly Salary</h4>
+                <p className="text-xs sm:text-sm font-semibold text-sky-200">Enables budget calculations and alerts</p>
               </div>
             </div>
 
             <div className="flex items-center gap-2 w-full sm:w-auto">
-              <div className="relative flex-1 sm:w-44">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs">₹</span>
+              <div className="relative flex-1 sm:w-48">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sky-300 font-bold text-sm">₹</span>
                 <input
                   type="number"
-                  placeholder="Monthly Budget"
+                  placeholder="Monthly Salary"
                   value={salaryInput}
                   onChange={(e) => setSalaryInput(e.target.value)}
-                  className="w-full pl-7 pr-3 py-1.5 bg-zinc-900 border border-white/[0.08] rounded-lg text-white placeholder-zinc-500 text-xs focus:outline-none focus:border-white/30"
+                  className="w-full pl-8 pr-3 py-2 bg-[#0A192F] border-2 border-sky-400 rounded-xl text-white placeholder-sky-300/60 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
                   min="0"
                 />
               </div>
               <button
                 type="button"
                 onClick={handleSalarySave}
-                className="px-3.5 py-1.5 bg-white hover:bg-zinc-200 text-zinc-950 font-medium text-xs rounded-lg transition-all flex items-center gap-1 shrink-0 cursor-pointer"
+                className="px-5 py-2 bg-gradient-to-r from-sky-400 to-cyan-400 hover:from-sky-300 hover:to-cyan-300 text-slate-950 font-black text-sm rounded-xl transition-all shadow-md flex items-center gap-1.5 shrink-0 cursor-pointer"
               >
-                {salarySavedAlert ? <Check className="w-3.5 h-3.5" /> : null}
-                <span>{salarySavedAlert ? "Saved" : "Save"}</span>
+                {salarySavedAlert ? <Check className="w-4 h-4" /> : null}
+                <span>{salarySavedAlert ? "Saved!" : "Save Salary"}</span>
               </button>
             </div>
           </div>
@@ -106,22 +106,22 @@ export default function ExpenseForm({
 
       {/* Main Add Expense Form */}
       <form onSubmit={submit} className="w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-center">
           {/* Title Input */}
           <div className="lg:col-span-4">
             <input
               type="text"
-              placeholder="Expense title (e.g. Grocery, Flight)"
+              placeholder="Expense title (e.g. Grocery, Rent)"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              className="w-full px-3.5 py-2.5 bg-zinc-950/70 border border-white/[0.08] rounded-xl text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all"
+              className="w-full px-4 py-3 bg-[#050D1A] border-2 border-sky-400/60 rounded-xl text-white placeholder-sky-200/60 text-sm font-bold focus:outline-none focus:border-sky-300 focus:ring-2 focus:ring-sky-300/40 transition-all shadow-inner"
             />
           </div>
 
           {/* Amount Input */}
           <div className="lg:col-span-3 relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-sky-400 font-bold">
               <IndianRupee className="w-4 h-4" />
             </div>
             <input
@@ -131,37 +131,37 @@ export default function ExpenseForm({
               onChange={(e) => setAmount(e.target.value)}
               required
               min="1"
-              className="w-full pl-9 pr-3.5 py-2.5 bg-zinc-950/70 border border-white/[0.08] rounded-xl text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all"
+              className="w-full pl-10 pr-4 py-3 bg-[#050D1A] border-2 border-sky-400/60 rounded-xl text-white placeholder-sky-200/60 text-sm font-bold focus:outline-none focus:border-sky-300 focus:ring-2 focus:ring-sky-300/40 transition-all shadow-inner"
             />
           </div>
 
           {/* Category Select */}
           <div className="lg:col-span-3 relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-sky-400">
               <Tag className="w-4 h-4" />
             </div>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full pl-9 pr-8 py-2.5 bg-zinc-950/70 border border-white/[0.08] rounded-xl text-zinc-100 text-sm focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all capitalize appearance-none cursor-pointer"
+              className="w-full pl-10 pr-8 py-3 bg-[#050D1A] border-2 border-sky-400/60 rounded-xl text-white text-sm font-bold focus:outline-none focus:border-sky-300 focus:ring-2 focus:ring-sky-300/40 transition-all capitalize appearance-none cursor-pointer"
             >
-              <option value="food" className="bg-zinc-900 text-zinc-100">🍽️ Food & Dining</option>
-              <option value="travel" className="bg-zinc-900 text-zinc-100">✈️ Travel & Transit</option>
-              <option value="shopping" className="bg-zinc-900 text-zinc-100">🛍️ Shopping</option>
-              <option value="bills" className="bg-zinc-900 text-zinc-100">🧾 Bills & Utilities</option>
-              <option value="other" className="bg-zinc-900 text-zinc-100">📦 Other</option>
+              <option value="food" className="bg-[#0A192F] text-white font-bold">🍽️ Food</option>
+              <option value="travel" className="bg-[#0A192F] text-white font-bold">✈️ Travel</option>
+              <option value="shopping" className="bg-[#0A192F] text-white font-bold">🛍️ Shopping</option>
+              <option value="bills" className="bg-[#0A192F] text-white font-bold">🧾 Bills</option>
+              <option value="other" className="bg-[#0A192F] text-white font-bold">📦 Other</option>
             </select>
           </div>
 
-          {/* Primary Apple-style White Button */}
+          {/* High-Visibility Add Button */}
           <div className="sm:col-span-2 lg:col-span-2">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-2.5 px-4 bg-white hover:bg-zinc-200 text-zinc-950 font-semibold text-sm rounded-xl transition-all shadow-sm active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-60"
+              className="w-full py-3 px-4 bg-gradient-to-r from-sky-400 to-cyan-400 hover:from-sky-300 hover:to-cyan-300 text-slate-950 font-black text-sm sm:text-base rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
             >
-              <Plus className="w-4 h-4" />
-              <span>{isSubmitting ? "Adding..." : "Add"}</span>
+              <PlusCircle className="w-5 h-5" />
+              <span>{isSubmitting ? "ADDING..." : "ADD"}</span>
             </button>
           </div>
         </div>
