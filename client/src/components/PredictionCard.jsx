@@ -23,9 +23,9 @@ export default function PredictionCard({ prediction = 0, total = 0, salary = 0, 
       ? Math.min(Math.round((predValue / salaryValue) * 100), 999)
       : 0;
 
-  let statusColor = "text-emerald-300";
-  let statusBg = "bg-emerald-500/20 border-2 border-emerald-400";
-  let progressColor = "bg-gradient-to-r from-emerald-400 to-teal-300";
+  let statusColor = "text-[#8BBB92]";
+  let statusBg = "bg-[#2A835F]/20 border-2 border-[#8BBB92]";
+  let progressColor = "bg-gradient-to-r from-[#2A835F] to-[#8BBB92]";
   let statusText = "WITHIN BUDGET";
 
   if (remaining < 0) {
@@ -48,15 +48,15 @@ export default function PredictionCard({ prediction = 0, total = 0, salary = 0, 
   };
 
   return (
-    <div className="h-full flex flex-col justify-between backdrop-blur-xl bg-[#0A192F]/90 border-2 border-sky-400/50 rounded-3xl p-6 shadow-[0_8px_32px_rgba(56,189,248,0.25)]">
+    <div className="h-full flex flex-col justify-between backdrop-blur-xl bg-[#092328]/90 border-2 border-[#2A835F] rounded-3xl p-6 shadow-[0_8px_32px_rgba(42,131,95,0.25)]">
       <div>
         {/* Header */}
         <div className="flex items-center justify-between gap-3 mb-5">
           <div>
-            <h3 className="text-base sm:text-lg font-black text-[#38BDF8] tracking-wide uppercase">
+            <h3 className="text-base sm:text-lg font-black text-[#8BBB92] tracking-wide uppercase">
               Budget & AI Prediction
             </h3>
-            <p className="text-xs sm:text-sm font-bold text-sky-200">Current Outflow & Monthly Forecast</p>
+            <p className="text-xs sm:text-sm font-bold text-[#E2F1E4]">Current Outflow & Monthly Forecast</p>
           </div>
 
           <div className={`px-3 py-1 rounded-full text-xs font-black border flex items-center gap-1.5 ${statusBg} ${statusColor}`}>
@@ -68,40 +68,40 @@ export default function PredictionCard({ prediction = 0, total = 0, salary = 0, 
         {/* Highlight Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-5">
           {/* Predicted Month-End */}
-          <div className="p-4 rounded-2xl bg-[#050D1A] border-2 border-sky-400/40">
-            <div className="flex items-center justify-between text-sky-200 text-xs font-bold mb-1">
+          <div className="p-4 rounded-2xl bg-[#051518] border-2 border-[#12544F]">
+            <div className="flex items-center justify-between text-[#8BBB92] text-xs font-bold mb-1">
               <span>PREDICTED EXPENSES</span>
-              <Activity className="w-4 h-4 text-sky-400" />
+              <Activity className="w-4 h-4 text-[#8BBB92]" />
             </div>
             <div className="text-2xl sm:text-3xl font-black text-white">
               ₹{predValue.toLocaleString("en-IN")}
             </div>
-            <span className="text-xs font-bold text-sky-300 mt-1 block">Expected month-end total</span>
+            <span className="text-xs font-bold text-[#E2F1E4]/70 mt-1 block">Expected month-end total</span>
           </div>
 
           {/* Current Spent */}
-          <div className="p-4 rounded-2xl bg-[#050D1A] border-2 border-sky-400/40">
-            <div className="flex items-center justify-between text-sky-200 text-xs font-bold mb-1">
+          <div className="p-4 rounded-2xl bg-[#051518] border-2 border-[#12544F]">
+            <div className="flex items-center justify-between text-[#8BBB92] text-xs font-bold mb-1">
               <span>TOTAL SPENT TILL NOW</span>
-              <TrendingUp className="w-4 h-4 text-sky-400" />
+              <TrendingUp className="w-4 h-4 text-[#8BBB92]" />
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-[#38BDF8]">
+            <div className="text-2xl sm:text-3xl font-black text-[#8BBB92]">
               ₹{totalValue.toLocaleString("en-IN")}
             </div>
-            <span className="text-xs font-bold text-sky-300 mt-1 block">Actual recorded amount</span>
+            <span className="text-xs font-bold text-[#E2F1E4]/70 mt-1 block">Actual recorded amount</span>
           </div>
         </div>
 
         {/* Budget Progress & Health */}
         {salaryValue > 0 ? (
-          <div className="p-4 rounded-2xl bg-[#050D1A] border-2 border-sky-400/40 mb-4">
+          <div className="p-4 rounded-2xl bg-[#051518] border-2 border-[#12544F] mb-4">
             <div className="flex items-center justify-between text-xs sm:text-sm font-black mb-2">
-              <span className="text-sky-200">BUDGET UTILIZATION</span>
+              <span className="text-[#8BBB92]">BUDGET UTILIZATION</span>
               <span className={statusColor}>{percentUsed}% USED</span>
             </div>
 
             {/* Progress Track */}
-            <div className="w-full h-3 bg-[#0A192F] rounded-full overflow-hidden mb-3 border border-sky-400/30">
+            <div className="w-full h-3 bg-[#092328] rounded-full overflow-hidden mb-3 border border-[#12544F]">
               <div
                 className={`h-full rounded-full transition-all duration-500 ${progressColor}`}
                 style={{ width: `${Math.min(percentUsed, 100)}%` }}
@@ -109,14 +109,14 @@ export default function PredictionCard({ prediction = 0, total = 0, salary = 0, 
             </div>
 
             {/* Salary Breakdown Row */}
-            <div className="flex items-center justify-between text-xs sm:text-sm font-bold pt-2 border-t border-sky-400/20">
-              <div className="flex items-center gap-1.5 text-sky-200">
-                <Wallet className="w-4 h-4 text-sky-400" />
+            <div className="flex items-center justify-between text-xs sm:text-sm font-bold pt-2 border-t border-[#12544F]">
+              <div className="flex items-center gap-1.5 text-[#E2F1E4]">
+                <Wallet className="w-4 h-4 text-[#8BBB92]" />
                 <span>Salary: <strong className="text-white text-sm">₹{salaryValue.toLocaleString("en-IN")}</strong></span>
               </div>
               <div className="text-right">
-                <span className="text-sky-200">Remaining: </span>
-                <strong className={`text-sm ${remaining < 0 ? "text-rose-400" : "text-emerald-400"}`}>
+                <span className="text-[#E2F1E4]">Remaining: </span>
+                <strong className={`text-sm ${remaining < 0 ? "text-rose-400" : "text-[#8BBB92]"}`}>
                   {remaining < 0 ? "-" : ""}₹{Math.abs(remaining).toLocaleString("en-IN")}
                 </strong>
               </div>
@@ -130,8 +130,8 @@ export default function PredictionCard({ prediction = 0, total = 0, salary = 0, 
             )}
           </div>
         ) : (
-          <div className="p-4 rounded-2xl bg-[#050D1A] border-2 border-sky-400/40 text-center mb-4">
-            <p className="text-xs sm:text-sm font-bold text-sky-200">
+          <div className="p-4 rounded-2xl bg-[#051518] border-2 border-[#12544F] text-center mb-4">
+            <p className="text-xs sm:text-sm font-bold text-[#8BBB92]">
               Enter your monthly salary above to activate real-time budget forecasting!
             </p>
           </div>
@@ -139,10 +139,10 @@ export default function PredictionCard({ prediction = 0, total = 0, salary = 0, 
       </div>
 
       {/* Footer Quick Salary Modifier */}
-      <div className="pt-3 border-t border-sky-400/30 flex items-center justify-between text-xs font-bold text-sky-300">
+      <div className="pt-3 border-t border-[#12544F] flex items-center justify-between text-xs font-bold text-[#8BBB92]">
         <span className="flex items-center gap-1.5">
-          <CheckCircle2 className="w-4 h-4 text-sky-400" />
-          AI Model Active
+          <CheckCircle2 className="w-4 h-4 text-[#8BBB92]" />
+          AI Model Synchronized
         </span>
 
         {editingSalary ? (
@@ -152,11 +152,11 @@ export default function PredictionCard({ prediction = 0, total = 0, salary = 0, 
               placeholder="Salary"
               value={salaryInput}
               onChange={(e) => setSalaryInput(e.target.value)}
-              className="w-28 px-2.5 py-1 bg-[#050D1A] border-2 border-sky-400 rounded-lg text-xs font-bold text-white"
+              className="w-28 px-2.5 py-1 bg-[#051518] border-2 border-[#12544F] rounded-lg text-xs font-bold text-white focus:outline-none focus:border-[#8BBB92]"
             />
             <button
               onClick={handleSave}
-              className="p-1.5 rounded-lg bg-sky-400 text-slate-950 font-black cursor-pointer hover:bg-sky-300"
+              className="p-1.5 rounded-lg bg-[#8BBB92] text-[#092328] font-black cursor-pointer hover:brightness-105"
             >
               <Check className="w-4 h-4" />
             </button>
@@ -168,7 +168,7 @@ export default function PredictionCard({ prediction = 0, total = 0, salary = 0, 
               setSalaryInput(salaryValue || "");
               setEditingSalary(true);
             }}
-            className="flex items-center gap-1 text-sky-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1 text-[#8BBB92] hover:text-white transition-colors cursor-pointer"
           >
             <Edit2 className="w-3.5 h-3.5" />
             <span>{salaryValue > 0 ? "Edit Salary" : "Set Salary"}</span>

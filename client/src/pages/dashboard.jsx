@@ -94,28 +94,28 @@ export default function Dashboard() {
       className="min-h-screen text-white flex flex-col relative overflow-x-hidden bg-cover bg-fixed bg-center"
       style={{ backgroundImage: `url("${dashboardBg}")` }}
     >
-      {/* Gentle translucent overlay preserving dashboard background visibility */}
-      <div className="absolute inset-0 bg-[#0A192F]/35 backdrop-blur-[1px] pointer-events-none" />
+      {/* Translucent overlay maintaining dashboard background visibility */}
+      <div className="absolute inset-0 bg-[#092328]/35 backdrop-blur-[1px] pointer-events-none" />
 
       {/* Top Header Bar */}
-      <header className="sticky top-0 z-40 backdrop-blur-xl bg-[#0A192F]/95 border-b-2 border-sky-400/50 shadow-xl shadow-sky-950/60">
+      <header className="sticky top-0 z-40 backdrop-blur-xl bg-[#092328]/95 border-b-2 border-[#2A835F] shadow-xl shadow-black/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-          {/* Brand Titles matching original aesthetic */}
+          {/* Brand Titles */}
           <div>
-            <h1 className="text-xl sm:text-2xl font-black tracking-wide text-[#38BDF8] drop-shadow-sm uppercase">
+            <h1 className="text-xl sm:text-2xl font-black tracking-wide text-[#8BBB92] uppercase">
               Dashboard • My Expenses
             </h1>
-            <p className="text-xs sm:text-sm font-bold text-sky-200">
-              AI Powered Expense Forecasting & Budget Tracking
+            <p className="text-xs sm:text-sm font-bold text-[#E2F1E4]">
+              Intelligent Capital Forecasting & Expense Tracking
             </p>
           </div>
 
           {/* Right actions: Salary Badge & Logout */}
           <div className="flex items-center gap-3">
             {salary > 0 && (
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#050D1A] border-2 border-sky-400/50 text-xs shadow-md">
-                <Wallet className="w-4 h-4 text-sky-400" />
-                <span className="font-bold text-sky-200">Budget:</span>
+              <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#051518] border-2 border-[#12544F] text-xs shadow-md">
+                <Wallet className="w-4 h-4 text-[#8BBB92]" />
+                <span className="font-bold text-[#8BBB92]">Budget:</span>
                 <span className="font-black text-white text-sm">₹{salary.toLocaleString("en-IN")}</span>
               </div>
             )}
@@ -123,7 +123,7 @@ export default function Dashboard() {
             <button
               type="button"
               onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white text-xs font-extrabold shadow-lg shadow-rose-900/40 transition-all cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white text-xs font-black shadow-lg shadow-rose-950/50 transition-all cursor-pointer"
               title="Sign out"
             >
               <LogOut className="w-4 h-4" />
@@ -136,10 +136,10 @@ export default function Dashboard() {
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 z-10">
         {/* Quick Add Expense Card */}
-        <section className="backdrop-blur-xl bg-[#0A192F]/90 border-2 border-sky-400/50 rounded-3xl p-6 shadow-[0_8px_32px_rgba(56,189,248,0.25)]">
+        <section className="backdrop-blur-xl bg-[#092328]/90 border-2 border-[#2A835F] rounded-3xl p-6 shadow-[0_8px_32px_rgba(42,131,95,0.25)]">
           <div className="flex items-center gap-2 mb-4">
-            <PlusCircle className="w-5 h-5 text-sky-400" />
-            <h2 className="text-base font-black text-[#38BDF8] uppercase tracking-wider">Add New Expense</h2>
+            <PlusCircle className="w-5 h-5 text-[#8BBB92]" />
+            <h2 className="text-base font-black text-[#8BBB92] uppercase tracking-wider">Add New Expense</h2>
           </div>
 
           <ExpenseForm
@@ -155,18 +155,18 @@ export default function Dashboard() {
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <BarChart2 className="w-5 h-5 text-sky-400" />
-              <h2 className="text-lg sm:text-xl font-black text-[#38BDF8] tracking-wide drop-shadow-md">
+              <BarChart2 className="w-5 h-5 text-[#8BBB92]" />
+              <h2 className="text-lg sm:text-xl font-black text-[#8BBB92] tracking-wide">
                 Analytics & Charts
               </h2>
             </div>
-            <span className="text-xs font-bold text-sky-200">Category, Trend, Comparison & Scatter Analysis</span>
+            <span className="text-xs font-bold text-[#E2F1E4]">Category Breakdown, Trajectory & Distribution</span>
           </div>
 
           <ExpenseChart expenses={expenses} />
         </section>
 
-        {/* AI Prediction & Recent Transactions in Responsive Grid */}
+        {/* Prediction Card & Recent Transactions in Responsive Grid */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Prediction & Budget Status (5 cols) */}
           <div className="lg:col-span-5">
@@ -188,11 +188,11 @@ export default function Dashboard() {
         </section>
       </main>
 
-      {/* High-Visibility Footer */}
-      <footer className="mt-auto backdrop-blur-xl bg-[#0A192F]/95 border-t-2 border-sky-400/40 py-5 text-center text-xs text-sky-200 font-bold">
+      {/* Footer */}
+      <footer className="mt-auto backdrop-blur-xl bg-[#092328]/95 border-t-2 border-[#2A835F] py-5 text-center text-xs text-[#8BBB92] font-bold">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>AI Expense Tracker • Real-Time Financial Intelligence</span>
-          <span className="text-sky-400">High Visibility Glass Edition</span>
+          <span className="text-[#8BBB92]/80">Teal & Forest Edition</span>
         </div>
       </footer>
     </div>
