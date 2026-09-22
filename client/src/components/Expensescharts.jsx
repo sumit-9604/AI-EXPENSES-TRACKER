@@ -42,18 +42,32 @@ const PALETTE = [
 ];
 
 // High contrast light tooltip component
+// High contrast light tooltip component displaying Date and Rupee currency
 const CustomTooltip = ({ active, payload, label, prefix = "₹" }) => {
   if (active && payload && payload.length) {
+    const itemData = payload[0]?.payload;
+    const displayDate = itemData?.fullDate || label;
+    const title = itemData?.title;
+
     return (
-      <div className="p-3.5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_10px_25px_rgba(0,0,0,0.12)] text-xs font-bold text-[#597928]">
-        {label && <p className="text-[#597928] font-black mb-1.5 uppercase tracking-wide">{label}</p>}
+      <div className="p-3 sm:p-3.5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_10px_25px_rgba(0,0,0,0.12)] text-xs font-bold text-[#597928]">
+        {displayDate && (
+          <p className="text-[#597928] font-black mb-1 tracking-wide">
+            {displayDate}
+          </p>
+        )}
+        {title && (
+          <p className="text-xs font-semibold text-[#597928]/80 mb-1 truncate max-w-[170px]">
+            {title}
+          </p>
+        )}
         {payload.map((item, idx) => (
-          <div key={idx} className="flex items-center gap-2.5 text-sm">
+          <div key={idx} className="flex items-center gap-2 text-sm">
             <span 
-              className="w-3 h-3 rounded-full inline-block shadow-sm" 
-              style={{ backgroundColor: item.color || item.fill }} 
+              className="w-2.5 h-2.5 rounded-full inline-block shadow-sm" 
+              style={{ backgroundColor: item.color || item.fill || "#597928" }} 
             />
-            <span className="font-semibold text-[#597928]/80">{item.name}:</span>
+            <span className="font-semibold text-[#597928]/80">{item.name || "Expense"}:</span>
             <span className="text-[#597928] font-black">{prefix}{Number(item.value).toLocaleString("en-IN")}</span>
           </div>
         ))}
@@ -96,11 +110,14 @@ export default function ExpenseChart({ expenses = [] }) {
     }, {})
   );
 
-  // Chronological Area Trend from user's actual expenses
+  // Chronological Area Trend with date, title, and formatted currency info
   const lineData = [...expenses]
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
     .map(e => ({
       date: new Date(e.createdAt).toLocaleDateString("en-IN", { month: "short", day: "numeric" }),
+      fullDate: new Date(e.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
+      title: e.title,
+      category: e.category,
       amount: Number(e.amount)
     }));
 
@@ -126,9 +143,6 @@ export default function ExpenseChart({ expenses = [] }) {
                 <p className="text-xs font-semibold text-[#597928]/75">Spending breakdown by category</p>
               </div>
             </div>
-            <span className="text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-[#FDF6ED] text-[#597928] border border-[#DCCFC0]">
-              Donut
-            </span>
           </div>
 
           <div className="w-full h-72">
@@ -174,9 +188,7 @@ export default function ExpenseChart({ expenses = [] }) {
                 <p className="text-xs font-semibold text-[#597928]/75">Chronological outflow velocity</p>
               </div>
             </div>
-            <span className="text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-[#FDF6ED] text-[#597928] border border-[#DCCFC0]">
-              Area Fill
-            </span>
+            
           </div>
 
           <div className="w-full h-72">
@@ -190,8 +202,12 @@ export default function ExpenseChart({ expenses = [] }) {
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#DCCFC0" vertical={false} />
                 <XAxis dataKey="date" stroke="#597928" tick={{ fontSize: 11, fontWeight: 'bold' }} />
-                <YAxis stroke="#597928" tick={{ fontSize: 11, fontWeight: 'bold' }} />
-                <Tooltip content={<CustomTooltip />} />
+                <YAxis 
+                  stroke="#597928" 
+                  tick={{ fontSize: 11, fontWeight: 'bold' }} 
+                  tickFormatter={(val) => `₹${Number(val).toLocaleString("en-IN")}`} 
+                />
+                <Tooltip content={<CustomTooltip prefix="₹" />} />
                 <Area 
                   type="monotone" 
                   dataKey="amount" 
@@ -220,9 +236,6 @@ export default function ExpenseChart({ expenses = [] }) {
                 <p className="text-xs font-semibold text-[#597928]/75">Total expenditure grouped by category</p>
               </div>
             </div>
-            <span className="text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-[#FDF6ED] text-[#597928] border border-[#DCCFC0]">
-              Bars
-            </span>
           </div>
 
           <div className="w-full h-72">
@@ -261,9 +274,6 @@ export default function ExpenseChart({ expenses = [] }) {
                 <p className="text-xs font-semibold text-[#597928]/75">Day of month vs transaction magnitude</p>
               </div>
             </div>
-            <span className="text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-[#FDF6ED] text-[#597928] border border-[#DCCFC0]">
-              Scatter
-            </span>
           </div>
 
           <div className="w-full h-72">

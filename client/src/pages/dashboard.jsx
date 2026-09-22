@@ -313,9 +313,6 @@ export default function Dashboard() {
             <span className="w-2 h-2 rounded-full bg-[#597928]" />
             <span>AI Expense Tracker • Built for clarity, speed, and precision</span>
           </div>
-          <span className="text-[#597928] font-semibold bg-[#FDF6ED] px-3 py-1 rounded-full border border-[#DCCFC0]">
-            Warm Olive Edition • Color #597928
-          </span>
         </div>
       </footer>
     </div>
