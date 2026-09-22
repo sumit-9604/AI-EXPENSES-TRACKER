@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import API from "../api";
 import { AuthContext } from "../content";
+import loginBg from "../assets/ChatGPT Image Feb 15, 2026, 01_44_55 PM.png";
 import { 
   Sparkles, 
   Mail, 
@@ -59,7 +60,13 @@ export default function Login() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-slate-950 overflow-hidden">
+    <div 
+      className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-cover bg-center bg-no-repeat overflow-hidden"
+      style={{ backgroundImage: `url("${loginBg}")` }}
+    >
+      {/* Background dark glass overlay ensuring text readability and contrast */}
+      <div className="absolute inset-0 bg-slate-950/65 backdrop-blur-[2px]" />
+
       {/* Dynamic ambient glowing background gradients */}
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/20 rounded-full blur-[128px] pointer-events-none" />
       <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-indigo-500/20 rounded-full blur-[128px] pointer-events-none" />

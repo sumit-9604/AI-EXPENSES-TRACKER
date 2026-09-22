@@ -4,12 +4,12 @@ import ExpenseChart from "../components/Expensescharts";
 import PredictionCard from "../components/PredictionCard";
 import ExpenseForm from "../components/Expenseform";
 import Expenseslist from "../components/Expenseslist";
+import dashboardBg from "../assets/dashboard.png";
 import { 
   Sparkles, 
   LogOut, 
   Wallet, 
   PlusCircle, 
-  Layers, 
   BarChart2
 } from "lucide-react";
 
@@ -91,13 +91,19 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col relative overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div 
+      className="min-h-screen bg-slate-950 text-slate-100 flex flex-col relative overflow-x-hidden bg-cover bg-fixed bg-center selection:bg-cyan-500/30 selection:text-cyan-200"
+      style={{ backgroundImage: `url("${dashboardBg}")` }}
+    >
+      {/* Background glass overlay for high contrast and readability */}
+      <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-[2px] pointer-events-none" />
+
       {/* Ambient glowing backdrop lights */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Top Navbar */}
-      <header className="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
+      <header className="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/85 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           {/* Brand Logo */}
           <div className="flex items-center gap-3">
@@ -145,7 +151,7 @@ export default function Dashboard() {
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 z-10">
         {/* Quick Add Expense Card */}
-        <section className="backdrop-blur-xl bg-slate-900/70 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl">
+        <section className="backdrop-blur-xl bg-slate-900/75 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl">
           <div className="flex items-center gap-2 mb-4">
             <div className="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
               <PlusCircle className="w-4 h-4" />
@@ -162,7 +168,22 @@ export default function Dashboard() {
           />
         </section>
 
-        {/* Middle Section: AI Copilot & Recent Transactions in Responsive Grid */}
+        {/* Prominent Visual Analytics & Charts Section (Pie, Line, Bar, Scatter) */}
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                <BarChart2 className="w-4 h-4" />
+              </div>
+              <h2 className="text-base font-bold text-white tracking-tight">Visual Analytics & Charts</h2>
+            </div>
+            <span className="text-xs text-slate-400">Real-time Category, Trend, Comparison & Scatter</span>
+          </div>
+
+          <ExpenseChart expenses={expenses} />
+        </section>
+
+        {/* AI Copilot & Recent Transactions in Responsive Grid */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* AI Prediction & Budget Analysis Card (5 cols on large screens) */}
           <div className="lg:col-span-5">
@@ -181,21 +202,6 @@ export default function Dashboard() {
               onDelete={deleteExpense}
             />
           </div>
-        </section>
-
-        {/* Bottom Section: Visual Analytics & Charts */}
-        <section className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                <BarChart2 className="w-4 h-4" />
-              </div>
-              <h2 className="text-base font-bold text-white tracking-tight">Spending Trends & Visual Insights</h2>
-            </div>
-            <span className="text-xs text-slate-400">Automated multi-metric analytics</span>
-          </div>
-
-          <ExpenseChart expenses={expenses} />
         </section>
       </main>
 
