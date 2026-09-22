@@ -56,7 +56,7 @@ export default function Login() {
 
   return (
     <div 
-      className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-cover bg-center bg-no-repeat overflow-hidden"
+      className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-cover bg-center bg-no-repeat overflow-hidden text-[#597928]"
       style={{ backgroundImage: `url("${loginBg}")` }}
     >
       {/* Light translucent warm overlay preserving artwork while maximizing clarity */}
@@ -66,16 +66,16 @@ export default function Login() {
       <div className="relative w-full max-w-md z-10">
         {/* Brand Header */}
         <div className="text-center mb-6">
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-[#778873] uppercase drop-shadow-sm">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-[#597928] uppercase drop-shadow-sm">
             AI Expenses Tracker
           </h1>
-          <p className="text-[#2B382A] font-semibold text-sm sm:text-base mt-1.5">
+          <p className="text-[#597928] font-bold text-sm sm:text-base mt-1.5">
             Smart Budgeting & Real-Time Financial Ledger
           </p>
         </div>
 
         {/* Crisp Warm Frosted Glass Card */}
-        <div className="backdrop-blur-2xl bg-[#FDF6ED]/95 border-2 border-[#DCCFC0] rounded-3xl p-7 sm:p-8 shadow-2xl shadow-[#778873]/25">
+        <div className="backdrop-blur-2xl bg-[#FDF6ED]/95 border-2 border-[#DCCFC0] rounded-3xl p-7 sm:p-8 shadow-2xl shadow-[#597928]/20">
           {/* Segmented Control Tabs */}
           <div className="flex p-1.5 bg-[#DCCFC0]/40 rounded-2xl border border-[#DCCFC0] mb-6">
             <button
@@ -83,8 +83,8 @@ export default function Login() {
               onClick={() => { setIsRegister(false); setError(""); }}
               className={`flex-1 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer ${
                 !isRegister 
-                  ? "bg-[#778873] text-[#FDF6ED] shadow-md shadow-[#778873]/30" 
-                  : "text-[#778873] hover:text-[#2B382A]"
+                  ? "bg-[#597928] text-white shadow-md shadow-[#597928]/30" 
+                  : "text-[#597928] hover:text-[#486320]"
               }`}
             >
               Sign In
@@ -94,8 +94,8 @@ export default function Login() {
               onClick={() => { setIsRegister(true); setError(""); }}
               className={`flex-1 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer ${
                 isRegister 
-                  ? "bg-[#778873] text-[#FDF6ED] shadow-md shadow-[#778873]/30" 
-                  : "text-[#778873] hover:text-[#2B382A]"
+                  ? "bg-[#597928] text-white shadow-md shadow-[#597928]/30" 
+                  : "text-[#597928] hover:text-[#486320]"
               }`}
             >
               Create Account
@@ -113,11 +113,11 @@ export default function Login() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-[#778873] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-[#597928] uppercase tracking-wider mb-1.5">
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#778873]">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#597928]">
                   <Mail className="w-4 h-4" />
                 </div>
                 <input
@@ -126,17 +126,17 @@ export default function Login() {
                   placeholder="name@example.com"
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
-                  className="w-full pl-10 pr-4 py-3 bg-white border-2 border-[#DCCFC0] focus:border-[#778873] focus:ring-2 focus:ring-[#A1BC98]/40 rounded-xl text-[#2B382A] placeholder-[#778873]/50 text-sm font-semibold transition-all shadow-sm focus:outline-none"
+                  className="w-full pl-10 pr-4 py-3 bg-white border-2 border-[#DCCFC0] focus:border-[#597928] focus:ring-2 focus:ring-[#A1BC98]/40 rounded-xl text-[#597928] placeholder-[#597928]/50 text-sm font-semibold transition-all shadow-sm focus:outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#778873] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-[#597928] uppercase tracking-wider mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#778873]">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#597928]">
                   <Lock className="w-4 h-4" />
                 </div>
                 <input
@@ -145,7 +145,7 @@ export default function Login() {
                   placeholder="••••••••"
                   value={data.password}
                   onChange={(e) => setData({ ...data, password: e.target.value })}
-                  className="w-full pl-10 pr-4 py-3 bg-white border-2 border-[#DCCFC0] focus:border-[#778873] focus:ring-2 focus:ring-[#A1BC98]/40 rounded-xl text-[#2B382A] placeholder-[#778873]/50 text-sm font-semibold transition-all shadow-sm focus:outline-none"
+                  className="w-full pl-10 pr-4 py-3 bg-white border-2 border-[#DCCFC0] focus:border-[#597928] focus:ring-2 focus:ring-[#A1BC98]/40 rounded-xl text-[#597928] placeholder-[#597928]/50 text-sm font-semibold transition-all shadow-sm focus:outline-none"
                 />
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-3 py-3 px-4 rounded-xl bg-gradient-to-r from-[#778873] to-[#A1BC98] hover:from-[#657561] hover:to-[#8ea986] text-white font-black text-sm sm:text-base tracking-wide shadow-lg shadow-[#778873]/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+              className="w-full mt-3 py-3.5 px-4 rounded-xl bg-[#597928] hover:bg-[#486320] text-white font-black text-sm sm:text-base tracking-wide shadow-lg shadow-[#597928]/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -168,17 +168,17 @@ export default function Login() {
           </form>
 
           {/* Highlights */}
-          <div className="mt-8 pt-5 border-t border-[#DCCFC0] grid grid-cols-3 gap-2 text-center text-[#778873] text-xs font-bold">
+          <div className="mt-8 pt-5 border-t border-[#DCCFC0] grid grid-cols-3 gap-2 text-center text-[#597928] text-xs font-bold">
             <div className="flex flex-col items-center gap-1">
-              <TrendingUp className="w-4 h-4 text-[#778873]" />
+              <TrendingUp className="w-4 h-4 text-[#597928]" />
               <span>Predictions</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <PieChart className="w-4 h-4 text-[#778873]" />
+              <PieChart className="w-4 h-4 text-[#597928]" />
               <span>Analytics</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <ShieldCheck className="w-4 h-4 text-[#778873]" />
+              <ShieldCheck className="w-4 h-4 text-[#597928]" />
               <span>Secure</span>
             </div>
           </div>

@@ -98,26 +98,26 @@ export default function Dashboard() {
   const budgetRatio = salary > 0 ? Math.min(Math.round((total / salary) * 100), 100) : 0;
 
   return (
-    <div className="min-h-screen text-[#2B382A] flex flex-col bg-[#FDF6ED]">
+    <div className="min-h-screen text-[#597928] flex flex-col bg-[#FDF6ED]">
       {/* Top Header Bar */}
-      <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/85 border-b border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(119,136,115,0.12)]">
+      <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/90 border-b border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(89,121,40,0.12)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
           {/* Brand Titles */}
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#778873] to-[#586854] flex items-center justify-center text-white shadow-md shadow-[#778873]/30">
+            <div className="w-11 h-11 rounded-2xl bg-[#597928] flex items-center justify-center text-white shadow-md shadow-[#597928]/30">
               <CreditCard className="w-5 h-5 text-[#FDF6ED]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg sm:text-xl font-black tracking-tight text-[#2B382A] uppercase">
+                <h1 className="text-lg sm:text-xl font-black tracking-tight text-[#597928] uppercase">
                   AI Expense Tracker
                 </h1>
-                <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#A1BC98]/25 text-[#586854] border border-[#A1BC98]/50">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#A1BC98]/25 text-[#597928] border border-[#A1BC98]/60">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#597928] animate-pulse" />
                   Live Sync
                 </span>
               </div>
-              <p className="text-xs font-semibold text-[#778873]">
+              <p className="text-xs font-semibold text-[#597928]/80">
                 Smart Financial Ledger & Predictive Budgeting
               </p>
             </div>
@@ -127,16 +127,16 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             {salary > 0 && (
               <div className="hidden sm:flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-[#FDF6ED] border border-[#DCCFC0] text-xs shadow-inner">
-                <Wallet className="w-4 h-4 text-[#778873]" />
-                <span className="font-semibold text-[#778873]">Budget:</span>
-                <span className="font-black text-[#2B382A] text-sm">₹{salary.toLocaleString("en-IN")}</span>
+                <Wallet className="w-4 h-4 text-[#597928]" />
+                <span className="font-bold text-[#597928]/80">Budget:</span>
+                <span className="font-black text-[#597928] text-sm">₹{salary.toLocaleString("en-IN")}</span>
               </div>
             )}
 
             <button
               type="button"
               onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#778873] to-[#60715C] hover:from-[#657561] hover:to-[#505F4D] text-white text-xs font-bold shadow-md shadow-[#778873]/25 active:scale-95 transition-all cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#597928] hover:bg-[#486320] text-white text-xs font-bold shadow-md shadow-[#597928]/25 active:scale-95 transition-all cursor-pointer"
               title="Sign out"
             >
               <LogOut className="w-4 h-4" />
@@ -152,69 +152,69 @@ export default function Dashboard() {
         {/* KPI Stat Cards Ribbon */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* 1. Total Outflow */}
-          <div className="p-5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(119,136,115,0.08)] hover:shadow-[0_8px_25px_-4px_rgba(119,136,115,0.15)] transition-all">
+          <div className="p-5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(89,121,40,0.08)] hover:shadow-[0_8px_25px_-4px_rgba(89,121,40,0.15)] transition-all">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#778873]">Total Spent</span>
-              <div className="p-2 rounded-xl bg-[#A1BC98]/20 text-[#586854] border border-[#A1BC98]/40">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-[#597928]">Total Spent</span>
+              <div className="p-2 rounded-xl bg-[#A1BC98]/20 text-[#597928] border border-[#A1BC98]/40">
                 <TrendingDown className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-[#2B382A] tracking-tight">
+            <div className="text-2xl sm:text-3xl font-black text-[#597928] tracking-tight">
               ₹{total.toLocaleString("en-IN")}
             </div>
-            <div className="flex items-center justify-between text-xs font-bold text-[#778873] mt-2 pt-2 border-t border-[#DCCFC0]/40">
+            <div className="flex items-center justify-between text-xs font-bold text-[#597928]/80 mt-2 pt-2 border-t border-[#DCCFC0]/40">
               <span>{expenses.length} transactions</span>
-              <span className="text-[#586854] flex items-center font-extrabold">Active</span>
+              <span className="text-[#597928] flex items-center font-extrabold">Active</span>
             </div>
           </div>
 
           {/* 2. Monthly Budget */}
-          <div className="p-5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(119,136,115,0.08)] hover:shadow-[0_8px_25px_-4px_rgba(119,136,115,0.15)] transition-all">
+          <div className="p-5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(89,121,40,0.08)] hover:shadow-[0_8px_25px_-4px_rgba(89,121,40,0.15)] transition-all">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#778873]">Monthly Budget</span>
-              <div className="p-2 rounded-xl bg-[#DCCFC0]/40 text-[#778873] border border-[#DCCFC0]">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-[#597928]">Monthly Budget</span>
+              <div className="p-2 rounded-xl bg-[#DCCFC0]/40 text-[#597928] border border-[#DCCFC0]">
                 <Wallet className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-[#2B382A] tracking-tight">
+            <div className="text-2xl sm:text-3xl font-black text-[#597928] tracking-tight">
               {salary > 0 ? `₹${salary.toLocaleString("en-IN")}` : "Not Set"}
             </div>
-            <div className="flex items-center justify-between text-xs font-bold text-[#778873] mt-2 pt-2 border-t border-[#DCCFC0]/40">
+            <div className="flex items-center justify-between text-xs font-bold text-[#597928]/80 mt-2 pt-2 border-t border-[#DCCFC0]/40">
               <span>Limit Cap</span>
-              <span className="text-[#586854] font-extrabold">{salary > 0 ? "Target set" : "Prompt below"}</span>
+              <span className="text-[#597928] font-extrabold">{salary > 0 ? "Target set" : "Prompt below"}</span>
             </div>
           </div>
 
           {/* 3. AI Month-End Forecast */}
-          <div className="p-5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(119,136,115,0.08)] hover:shadow-[0_8px_25px_-4px_rgba(119,136,115,0.15)] transition-all">
+          <div className="p-5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(89,121,40,0.08)] hover:shadow-[0_8px_25px_-4px_rgba(89,121,40,0.15)] transition-all">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#778873]">AI Forecast</span>
-              <div className="p-2 rounded-xl bg-gradient-to-br from-[#A1BC98]/30 to-[#778873]/20 text-[#586854] border border-[#A1BC98]">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-[#597928]">AI Forecast</span>
+              <div className="p-2 rounded-xl bg-gradient-to-br from-[#A1BC98]/30 to-[#597928]/20 text-[#597928] border border-[#A1BC98]">
                 <Sparkles className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-[#586854] tracking-tight">
+            <div className="text-2xl sm:text-3xl font-black text-[#597928] tracking-tight">
               ₹{prediction.toLocaleString("en-IN")}
             </div>
-            <div className="flex items-center justify-between text-xs font-bold text-[#778873] mt-2 pt-2 border-t border-[#DCCFC0]/40">
+            <div className="flex items-center justify-between text-xs font-bold text-[#597928]/80 mt-2 pt-2 border-t border-[#DCCFC0]/40">
               <span>Projected EOM</span>
-              <span className="text-emerald-700 font-extrabold flex items-center gap-0.5">
+              <span className="text-[#597928] font-extrabold flex items-center gap-0.5">
                 <ArrowUpRight className="w-3.5 h-3.5" /> Predictive
               </span>
             </div>
           </div>
 
           {/* 4. Budget Balance */}
-          <div className="p-5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(119,136,115,0.08)] hover:shadow-[0_8px_25px_-4px_rgba(119,136,115,0.15)] transition-all">
+          <div className="p-5 rounded-2xl bg-white border border-[#DCCFC0] shadow-[0_4px_20px_-4px_rgba(89,121,40,0.08)] hover:shadow-[0_8px_25px_-4px_rgba(89,121,40,0.15)] transition-all">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#778873]">Remaining Balance</span>
-              <div className="p-2 rounded-xl bg-[#A1BC98]/20 text-[#586854] border border-[#A1BC98]/40">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-[#597928]">Remaining Balance</span>
+              <div className="p-2 rounded-xl bg-[#A1BC98]/20 text-[#597928] border border-[#A1BC98]/40">
                 <ShieldCheck className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-[#2B382A] tracking-tight">
+            <div className="text-2xl sm:text-3xl font-black text-[#597928] tracking-tight">
               {salary > 0 ? (
-                <span className={remaining < 0 ? "text-rose-600" : "text-[#2B382A]"}>
+                <span className={remaining < 0 ? "text-rose-600" : "text-[#597928]"}>
                   {remaining < 0 ? "-" : ""}₹{Math.abs(remaining).toLocaleString("en-IN")}
                 </span>
               ) : "—"}
@@ -222,7 +222,7 @@ export default function Dashboard() {
             <div className="mt-2 pt-2 border-t border-[#DCCFC0]/40">
               <div className="w-full h-1.5 bg-[#DCCFC0]/50 rounded-full overflow-hidden">
                 <div 
-                  className={`h-full rounded-full transition-all duration-500 ${remaining < 0 ? 'bg-rose-500' : 'bg-[#778873]'}`}
+                  className={`h-full rounded-full transition-all duration-500 ${remaining < 0 ? 'bg-rose-500' : 'bg-[#597928]'}`}
                   style={{ width: `${budgetRatio}%` }}
                 />
               </div>
@@ -231,22 +231,22 @@ export default function Dashboard() {
         </section>
 
         {/* Quick Add Expense Card */}
-        <section className="bg-white rounded-3xl p-6 sm:p-7 border border-[#DCCFC0] shadow-[0_10px_30px_-5px_rgba(119,136,115,0.1),0_2px_8px_rgba(0,0,0,0.02)]">
+        <section className="bg-white rounded-3xl p-6 sm:p-7 border border-[#DCCFC0] shadow-[0_10px_30px_-5px_rgba(89,121,40,0.08),0_2px_8px_rgba(0,0,0,0.02)]">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-[#A1BC98]/25 text-[#586854] border border-[#A1BC98]">
+              <div className="p-2 rounded-xl bg-[#A1BC98]/25 text-[#597928] border border-[#A1BC98]">
                 <PlusCircle className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base sm:text-lg font-black text-[#2B382A] uppercase tracking-wide">
+                <h2 className="text-base sm:text-lg font-black text-[#597928] uppercase tracking-wide">
                   Record New Transaction
                 </h2>
-                <p className="text-xs font-semibold text-[#778873]">
+                <p className="text-xs font-semibold text-[#597928]/75">
                   Instantly log expenses to update your budget trajectory
                 </p>
               </div>
             </div>
-            <span className="hidden sm:inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#FDF6ED] text-[#778873] border border-[#DCCFC0]">
+            <span className="hidden sm:inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#FDF6ED] text-[#597928] border border-[#DCCFC0]">
               Quick Entry
             </span>
           </div>
@@ -264,19 +264,19 @@ export default function Dashboard() {
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-[#A1BC98]/25 text-[#586854] border border-[#A1BC98]">
+              <div className="p-2 rounded-xl bg-[#A1BC98]/25 text-[#597928] border border-[#A1BC98]">
                 <BarChart2 className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-lg sm:text-xl font-black text-[#2B382A] tracking-tight">
+                <h2 className="text-lg sm:text-xl font-black text-[#597928] tracking-tight">
                   Visual Analytics & Outflow Breakdown
                 </h2>
-                <p className="text-xs font-semibold text-[#778873]">
+                <p className="text-xs font-semibold text-[#597928]/75">
                   Interactive charts across categories, chronological trends, and distributions
                 </p>
               </div>
             </div>
-            <span className="hidden sm:inline-block text-xs font-extrabold text-[#778873] bg-white px-3 py-1.5 rounded-xl border border-[#DCCFC0] shadow-sm">
+            <span className="hidden sm:inline-block text-xs font-extrabold text-[#597928] bg-white px-3 py-1.5 rounded-xl border border-[#DCCFC0] shadow-sm">
               4 Visualizers Active
             </span>
           </div>
@@ -307,14 +307,14 @@ export default function Dashboard() {
       </main>
 
       {/* Light Warm Footer */}
-      <footer className="mt-auto bg-white/80 backdrop-blur-md border-t border-[#DCCFC0] py-6 text-center text-xs text-[#778873] font-bold">
+      <footer className="mt-auto bg-white/80 backdrop-blur-md border-t border-[#DCCFC0] py-6 text-center text-xs text-[#597928] font-bold">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#778873]" />
+            <span className="w-2 h-2 rounded-full bg-[#597928]" />
             <span>AI Expense Tracker • Built for clarity, speed, and precision</span>
           </div>
-          <span className="text-[#586854] font-medium bg-[#FDF6ED] px-3 py-1 rounded-full border border-[#DCCFC0]">
-            Warm Sage Edition • High Contrast Design
+          <span className="text-[#597928] font-semibold bg-[#FDF6ED] px-3 py-1 rounded-full border border-[#DCCFC0]">
+            Warm Olive Edition • Color #597928
           </span>
         </div>
       </footer>
