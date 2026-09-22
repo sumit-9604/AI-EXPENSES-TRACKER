@@ -4,7 +4,6 @@ import ExpenseChart from "../components/Expensescharts";
 import PredictionCard from "../components/PredictionCard";
 import ExpenseForm from "../components/Expenseform";
 import Expenseslist from "../components/Expenseslist";
-import dashboardBg from "../assets/dashboard.png";
 import { 
   LogOut, 
   Wallet, 
@@ -90,13 +89,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div 
-      className="min-h-screen text-[#2B382A] flex flex-col relative overflow-x-hidden bg-cover bg-fixed bg-center"
-      style={{ backgroundImage: `url("${dashboardBg}")` }}
-    >
-      {/* Light translucent warm overlay ensuring zero darkness and maximum clarity */}
-      <div className="absolute inset-0 bg-[#FDF6ED]/70 backdrop-blur-[1px] pointer-events-none" />
-
+    <div className="min-h-screen text-[#2B382A] flex flex-col bg-[#FDF6ED]">
       {/* Top Header Bar */}
       <header className="sticky top-0 z-40 backdrop-blur-xl bg-[#FDF6ED]/95 border-b-2 border-[#DCCFC0] shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
