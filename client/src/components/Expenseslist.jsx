@@ -8,34 +8,35 @@ import {
   Plane, 
   FileText, 
   Package, 
-  Calendar
+  Calendar,
+  Layers
 } from "lucide-react";
 
 const CATEGORY_MAP = {
   food: {
     label: "Food",
     icon: Utensils,
-    badge: "bg-[#A1BC98]/20 text-[#778873] border-2 border-[#A1BC98]"
+    badge: "bg-[#587053]/15 text-[#587053] border border-[#587053]/30"
   },
   travel: {
     label: "Travel",
     icon: Plane,
-    badge: "bg-[#778873]/15 text-[#778873] border-2 border-[#778873]/30"
+    badge: "bg-[#2563EB]/15 text-[#2563EB] border border-[#2563EB]/30"
   },
   shopping: {
     label: "Shopping",
     icon: ShoppingBag,
-    badge: "bg-[#DCCFC0]/60 text-[#5B6D57] border-2 border-[#DCCFC0]"
+    badge: "bg-[#E17055]/15 text-[#E17055] border border-[#E17055]/30"
   },
   bills: {
     label: "Bills",
     icon: FileText,
-    badge: "bg-[#A1BC98]/30 text-[#2B382A] border-2 border-[#A1BC98]"
+    badge: "bg-[#D97706]/15 text-[#D97706] border border-[#D97706]/30"
   },
   other: {
     label: "Other",
     icon: Package,
-    badge: "bg-[#DCCFC0]/40 text-[#778873] border-2 border-[#DCCFC0]"
+    badge: "bg-[#8B5CF6]/15 text-[#8B5CF6] border border-[#8B5CF6]/30"
   }
 };
 
@@ -50,28 +51,33 @@ export default function Expenseslist({ expenses = [], onDelete }) {
   });
 
   return (
-    <div className="h-full flex flex-col justify-between backdrop-blur-xl bg-[#FDF6ED]/95 border-2 border-[#DCCFC0] rounded-3xl p-6 shadow-xl shadow-[#778873]/10">
+    <div className="h-full flex flex-col justify-between bg-white border border-[#DCCFC0] rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_-5px_rgba(119,136,115,0.1),0_2px_8px_rgba(0,0,0,0.02)]">
       <div>
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-          <div>
-            <h3 className="text-base sm:text-lg font-black text-[#778873] tracking-wide uppercase">
-              Recent Transactions
-            </h3>
-            <p className="text-xs sm:text-sm font-semibold text-[#2B382A]">
-              {expenses.length} {expenses.length === 1 ? "expense" : "expenses"} recorded
-            </p>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-xl bg-[#A1BC98]/25 text-[#587053] border border-[#A1BC98]/50">
+              <Layers className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-base sm:text-lg font-black text-[#2B382A] tracking-wide uppercase">
+                Recent Outflow Records
+              </h3>
+              <p className="text-xs font-semibold text-[#778873]">
+                {expenses.length} {expenses.length === 1 ? "transaction" : "transactions"} logged
+              </p>
+            </div>
           </div>
 
           {/* Search Box */}
-          <div className="relative sm:w-52">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#778873] font-bold" />
+          <div className="relative sm:w-56">
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#778873]" />
             <input
               type="text"
               placeholder="Search expenses..."
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-white border-2 border-[#DCCFC0] focus:border-[#778873] rounded-xl text-xs sm:text-sm font-bold text-[#2B382A] placeholder-[#778873]/50 focus:outline-none shadow-sm"
+              className="w-full pl-9 pr-3 py-2 bg-[#FDF6ED]/50 border border-[#DCCFC0] focus:bg-white focus:border-[#587053] focus:ring-2 focus:ring-[#A1BC98]/20 rounded-xl text-xs sm:text-sm font-bold text-[#2B382A] placeholder-[#778873]/50 focus:outline-none transition-all shadow-inner"
             />
           </div>
         </div>
@@ -82,10 +88,10 @@ export default function Expenseslist({ expenses = [], onDelete }) {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black capitalize shrink-0 transition-all cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-black capitalize shrink-0 transition-all cursor-pointer ${
                 selectedCategory === cat
-                  ? "bg-[#778873] text-[#FDF6ED] shadow-md shadow-[#778873]/30"
-                  : "bg-white text-[#778873] hover:text-[#2B382A] border border-[#DCCFC0]"
+                  ? "bg-gradient-to-r from-[#587053] to-[#778873] text-white shadow-md shadow-[#587053]/25 scale-[1.02]"
+                  : "bg-[#FDF6ED] text-[#778873] hover:text-[#2B382A] border border-[#DCCFC0]"
               }`}
             >
               {cat}
@@ -95,15 +101,15 @@ export default function Expenseslist({ expenses = [], onDelete }) {
 
         {/* Expenses List Rows */}
         {filteredExpenses.length === 0 ? (
-          <div className="py-12 flex flex-col items-center justify-center text-center">
-            <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-[#778873] mb-3 border-2 border-[#DCCFC0] shadow-sm">
-              <Receipt className="w-6 h-6" />
+          <div className="py-14 flex flex-col items-center justify-center text-center">
+            <div className="w-14 h-14 rounded-2xl bg-[#FDF6ED] flex items-center justify-center text-[#778873] mb-3 border border-[#DCCFC0]">
+              <Receipt className="w-7 h-7" />
             </div>
-            <p className="text-sm font-black text-[#2B382A]">No transactions found</p>
+            <p className="text-sm font-black text-[#2B382A]">No records found</p>
             <p className="text-xs font-semibold text-[#778873] mt-1">
               {expenses.length === 0
-                ? "Add an expense above to populate your list."
-                : "No expenses match the current filter."}
+                ? "Add an expense above to populate your personal ledger."
+                : "No transactions match your active search filter."}
             </p>
           </div>
         ) : (
@@ -125,11 +131,11 @@ export default function Expenseslist({ expenses = [], onDelete }) {
               return (
                 <div
                   key={e._id}
-                  className="group flex items-center justify-between p-4 rounded-2xl bg-white border-2 border-[#DCCFC0] hover:border-[#A1BC98] transition-all shadow-sm hover:shadow-md"
+                  className="group flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-[#FDF6ED]/40 hover:bg-white border border-[#DCCFC0] hover:border-[#587053] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 >
                   {/* Left: Icon & Description */}
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <div className={`p-2.5 rounded-xl ${catConfig.badge} shrink-0`}>
+                    <div className={`p-2.5 rounded-xl ${catConfig.badge} shrink-0 shadow-sm`}>
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
@@ -153,7 +159,7 @@ export default function Expenseslist({ expenses = [], onDelete }) {
                   {/* Right: Amount & Delete */}
                   <div className="flex items-center gap-4 shrink-0 ml-3">
                     <div className="text-right">
-                      <div className="text-base sm:text-lg font-black text-[#778873]">
+                      <div className="text-base sm:text-lg font-black text-[#2B382A]">
                         ₹{Number(e.amount).toLocaleString("en-IN")}
                       </div>
                     </div>
@@ -176,8 +182,8 @@ export default function Expenseslist({ expenses = [], onDelete }) {
 
       {/* Footer Total */}
       {filteredExpenses.length > 0 && (
-        <div className="pt-4 mt-4 border-t-2 border-[#DCCFC0] flex items-center justify-between text-xs sm:text-sm font-extrabold text-[#778873]">
-          <span>Filtered Total</span>
+        <div className="pt-4 mt-4 border-t border-[#DCCFC0] flex items-center justify-between text-xs sm:text-sm font-extrabold text-[#778873]">
+          <span className="uppercase tracking-wider">Filtered Outflow</span>
           <span className="text-base sm:text-lg font-black text-[#2B382A]">
             ₹{filteredExpenses.reduce((acc, curr) => acc + Number(curr.amount || 0), 0).toLocaleString("en-IN")}
           </span>
