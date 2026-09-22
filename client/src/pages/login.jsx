@@ -1,15 +1,14 @@
 import { useContext, useState } from "react";
 import API from "../api";
 import { AuthContext } from "../content";
-import loginBg from "../assets/ChatGPT Image Feb 15, 2026, 01_44_55 PM.png";
 import { 
   Mail, 
   Lock, 
   ArrowRight, 
   AlertCircle,
-  Shield,
-  Coins,
-  BarChart3
+  CreditCard,
+  PieChart,
+  ShieldCheck
 } from "lucide-react";
 
 export default function Login() {
@@ -36,7 +35,7 @@ export default function Login() {
           login(res.data.token);
         } else {
           setIsRegister(false);
-          alert("Account registered successfully! Please sign in.");
+          alert("Account created successfully. Please sign in.");
         }
       } else {
         const res = await API.post("/auth/login", data);
@@ -47,7 +46,7 @@ export default function Login() {
       console.error("Auth error:", err);
       setError(
         err.response?.data?.message || 
-        (isRegister ? "Registration failed. Email may already be in use." : "Invalid credentials. Please verify your email and password.")
+        (isRegister ? "Registration failed. Email may already be in use." : "Invalid email or password.")
       );
     } finally {
       setLoading(false);
@@ -55,39 +54,36 @@ export default function Login() {
   };
 
   return (
-    <div 
-      className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-cover bg-center bg-no-repeat overflow-hidden"
-      style={{ backgroundImage: `url("${loginBg}")` }}
-    >
-      {/* Editorial dark glass overlay preserving the painting background */}
-      <div className="absolute inset-0 bg-[#070b14]/75 backdrop-blur-[2px]" />
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-[#09090b] text-zinc-100 overflow-hidden">
+      {/* Subtle Apple-style radial ambient light */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-zinc-800/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Container */}
-      <div className="relative w-full max-w-md z-10">
-        {/* Header Title with Editorial Serif Typography */}
+      <div className="relative w-full max-w-sm z-10">
+        {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs font-medium tracking-widest uppercase mb-3">
-            Financial Ledger & Insights
+          <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-zinc-900 border border-white/[0.08] flex items-center justify-center text-zinc-100 shadow-lg shadow-black/40">
+            <CreditCard className="w-6 h-6" />
           </div>
-          <h1 className="font-serif-luxury text-3xl sm:text-4xl text-amber-100 font-bold tracking-wider italic">
-            Expenses Tracker
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            Expenses
           </h1>
-          <p className="text-slate-300/80 text-xs sm:text-sm mt-2 tracking-wide font-light">
-            Private Capital Management & Spending Analysis
+          <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+            Personal finance and budget tracking
           </p>
         </div>
 
-        {/* Wealth / Luxury Fintech Glass Card */}
-        <div className="backdrop-blur-xl bg-[#0e1626]/85 border border-amber-500/20 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-black/60 transition-all duration-300">
-          {/* Sign In vs Register Tabs */}
-          <div className="flex p-1 bg-[#090e18]/80 rounded-xl border border-slate-800 mb-6">
+        {/* Frosted Glass Card */}
+        <div className="backdrop-blur-2xl bg-zinc-900/60 border border-white/[0.08] rounded-3xl p-6 sm:p-7 shadow-2xl shadow-black/60">
+          {/* Segmented Control */}
+          <div className="flex p-1 bg-zinc-950/70 rounded-xl border border-white/[0.06] mb-5">
             <button
               type="button"
               onClick={() => { setIsRegister(false); setError(""); }}
-              className={`flex-1 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
+              className={`flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-all cursor-pointer ${
                 !isRegister 
-                  ? "bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37] text-slate-950 font-bold shadow-md shadow-amber-950/40" 
-                  : "text-slate-400 hover:text-amber-200"
+                  ? "bg-zinc-800 text-white shadow-sm border border-white/[0.08]" 
+                  : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
               Sign In
@@ -95,32 +91,32 @@ export default function Login() {
             <button
               type="button"
               onClick={() => { setIsRegister(true); setError(""); }}
-              className={`flex-1 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
+              className={`flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-all cursor-pointer ${
                 isRegister 
-                  ? "bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37] text-slate-950 font-bold shadow-md shadow-amber-950/40" 
-                  : "text-slate-400 hover:text-amber-200"
+                  ? "bg-zinc-800 text-white shadow-sm border border-white/[0.08]" 
+                  : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
-              Create Account
+              Register
             </button>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="mb-5 flex items-start gap-2.5 p-3 rounded-xl bg-red-950/40 border border-red-500/30 text-red-300 text-xs">
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-400" />
+            <div className="mb-4 flex items-start gap-2.5 p-3 rounded-xl bg-rose-950/30 border border-rose-500/20 text-rose-300 text-xs">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-400" />
               <span>{error}</span>
             </div>
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3.5">
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5 tracking-wide">
-                Email Address
+              <label className="block text-xs font-medium text-zinc-300 mb-1">
+                Email
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-amber-400/60">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
                   <Mail className="w-4 h-4" />
                 </div>
                 <input
@@ -129,17 +125,17 @@ export default function Login() {
                   placeholder="name@example.com"
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
-                  className="w-full pl-10 pr-4 py-2.5 bg-[#080d16]/80 border border-slate-700/80 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/40 focus:border-amber-400/80 transition-all"
+                  className="w-full pl-10 pr-3.5 py-2.5 bg-zinc-950/80 border border-white/[0.08] rounded-xl text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5 tracking-wide">
+              <label className="block text-xs font-medium text-zinc-300 mb-1">
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-amber-400/60">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
                   <Lock className="w-4 h-4" />
                 </div>
                 <input
@@ -148,40 +144,41 @@ export default function Login() {
                   placeholder="••••••••"
                   value={data.password}
                   onChange={(e) => setData({ ...data, password: e.target.value })}
-                  className="w-full pl-10 pr-4 py-2.5 bg-[#080d16]/80 border border-slate-700/80 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/40 focus:border-amber-400/80 transition-all"
+                  className="w-full pl-10 pr-3.5 py-2.5 bg-zinc-950/80 border border-white/[0.08] rounded-xl text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all"
                 />
               </div>
             </div>
 
+            {/* Apple-style primary white button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f7e7a9] to-[#d4af37] hover:brightness-110 text-slate-950 font-bold text-sm shadow-lg shadow-amber-950/40 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+              className="w-full mt-2 py-2.5 px-4 rounded-xl bg-white hover:bg-zinc-100 text-zinc-950 font-semibold text-sm shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
             >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-slate-900/40 border-t-slate-900 rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-zinc-900/30 border-t-zinc-900 rounded-full animate-spin" />
               ) : (
                 <>
-                  <span className="tracking-wide">{isRegister ? "Open Ledger Account" : "Access Portfolio"}</span>
+                  <span>{isRegister ? "Create Account" : "Continue"}</span>
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
             </button>
           </form>
 
-          {/* Understated Luxury Badges */}
-          <div className="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-2 text-center text-slate-400 text-[11px]">
+          {/* Minimalist Feature Icons */}
+          <div className="mt-6 pt-5 border-t border-white/[0.06] grid grid-cols-3 gap-2 text-center text-zinc-400 text-[11px]">
             <div className="flex flex-col items-center gap-1">
-              <Coins className="w-4 h-4 text-amber-400/80" />
-              <span>Capital Health</span>
+              <CreditCard className="w-4 h-4 text-zinc-300" />
+              <span>Spending</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <BarChart3 className="w-4 h-4 text-amber-400/80" />
-              <span>Asset Analytics</span>
+              <PieChart className="w-4 h-4 text-zinc-300" />
+              <span>Insights</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <Shield className="w-4 h-4 text-amber-400/80" />
-              <span>Confidential</span>
+              <ShieldCheck className="w-4 h-4 text-zinc-300" />
+              <span>Encrypted</span>
             </div>
           </div>
         </div>

@@ -1,11 +1,6 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
-    --font-serif: 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
   * {
     box-sizing: border-box;
   }
@@ -13,29 +8,26 @@
   html,
   body {
     min-height: 100%;
-    font-family: var(--font-sans);
-    background-color: #070a10;
-    color: #f1f5f9;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+    background-color: #09090b;
+    color: #f4f4f5;
     overflow-x: hidden;
+    letter-spacing: -0.01em;
   }
 
-  /* Custom Gold / Champagne Scrollbar */
+  /* Minimalist Apple-style subtle scrollbar */
   ::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #090e17;
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #232d3f;
+    background: #27272a;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #d4af37;
+    background: #3f3f46;
   }
-}
-
-.font-serif-luxury {
-  font-family: 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
 }

@@ -1,8 +1,6 @@
 import axios from "axios";
 const getBaseURL = () => {
   if (import.meta.env.DEV) {
-    // If user explicitly configured a local backend URL in .env (e.g. http://localhost:5000), use that;
-    // otherwise use the Vite proxy path "/api" which forwards to the backend cleanly.
     if (import.meta.env.VITE_API_URL && !import.meta.env.VITE_API_URL.includes("onrender.com")) {
       const url = import.meta.env.VITE_API_URL.replace(/\/+$/, "");
       return url.endsWith("/api") ? url : `${url}/api`;

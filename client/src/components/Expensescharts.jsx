@@ -22,14 +22,14 @@ import {
   Scatter
 } from "recharts";
 
-// Luxury wealth palette: gold, emerald, terracotta, amethyst, azure
+// Apple-inspired soft pastel palette
 const COLORS = [
-  "#d4af37", // Warm Gold
-  "#10b981", // Emerald
-  "#f59e0b", // Amber/Champagne
-  "#e06c75", // Terracotta Rose
-  "#8b5cf6", // Amethyst
-  "#4f8ff7"  // Classic Cobalt
+  "#38bdf8", // Soft Sky
+  "#34d399", // Soft Mint
+  "#fb923c", // Soft Tangerine
+  "#c084fc", // Soft Violet
+  "#fb7185", // Soft Rose
+  "#facc15"  // Soft Amber
 ];
 
 // Fallback demo data shown when the user has not logged any expenses yet
@@ -41,20 +41,20 @@ const DEMO_EXPENSES = [
   { category: "other", amount: 950, createdAt: new Date(Date.now() - 86400000 * 1).toISOString() },
 ];
 
-// Custom luxury styled tooltip component
+// Apple-style minimalist frosted tooltip
 const CustomTooltip = ({ active, payload, label, prefix = "₹" }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="p-3 rounded-xl bg-[#080d16]/95 border border-amber-500/30 shadow-2xl backdrop-blur-md text-xs">
-        {label && <p className="text-slate-400 font-medium mb-1">{label}</p>}
+      <div className="p-2.5 rounded-xl bg-zinc-900/95 border border-white/[0.12] shadow-2xl backdrop-blur-md text-xs">
+        {label && <p className="text-zinc-400 font-medium mb-1">{label}</p>}
         {payload.map((item, idx) => (
-          <p key={idx} className="text-white font-bold flex items-center gap-1.5">
+          <p key={idx} className="text-white font-medium flex items-center gap-1.5">
             <span 
               className="w-2 h-2 rounded-full inline-block" 
               style={{ backgroundColor: item.color || item.fill }} 
             />
-            <span>{item.name}:</span>
-            <span className="text-amber-300 font-serif-luxury">{prefix}{Number(item.value).toLocaleString("en-IN")}</span>
+            <span className="text-zinc-300">{item.name}:</span>
+            <span className="font-semibold text-white">{prefix}{Number(item.value).toLocaleString("en-IN")}</span>
           </p>
         ))}
       </div>
@@ -97,25 +97,25 @@ export default function ExpenseChart({ expenses = [] }) {
   return (
     <div className="space-y-4">
       {isDemo && (
-        <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#0e1626]/80 border border-amber-500/30 text-xs text-amber-200">
-          <span className="font-light">Exemplar preview portfolio displayed. Log your outflows above to track real-time capital disbursement.</span>
-          <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold uppercase tracking-wider font-mono">
-            Preview
+        <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-900 border border-white/[0.08] text-xs text-zinc-400">
+          <span>Sample preview charts. Log an expense above to view real-time data.</span>
+          <span className="px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-300 text-[10px] font-medium">
+            Sample Data
           </span>
         </div>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 1. Category Allocation (Pie Chart) */}
-        <div className="backdrop-blur-xl bg-[#0e1626]/80 border border-amber-500/20 rounded-3xl p-6 shadow-xl shadow-black/40 flex flex-col justify-between">
+        <div className="backdrop-blur-2xl bg-zinc-900/50 border border-white/[0.08] rounded-2xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              <div className="p-1.5 rounded-lg bg-zinc-800 text-zinc-300">
                 <PieIcon className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-amber-100 font-serif-luxury tracking-wide">Category Allocation</h4>
-                <p className="text-xs text-slate-400">Share of monthly capital expenditure</p>
+                <h4 className="text-sm font-semibold text-white tracking-tight">Category Breakdown</h4>
+                <p className="text-xs text-zinc-400">Distribution by bucket</p>
               </div>
             </div>
           </div>
@@ -127,15 +127,15 @@ export default function ExpenseChart({ expenses = [] }) {
                   data={categoryData}
                   dataKey="value"
                   nameKey="name"
-                  innerRadius={60}
+                  innerRadius={65}
                   outerRadius={95}
-                  paddingAngle={4}
+                  paddingAngle={3}
                 >
                   {categoryData.map((entry, index) => (
                     <Cell 
                       key={index} 
                       fill={COLORS[index % COLORS.length]} 
-                      stroke="#080d16" 
+                      stroke="#09090b" 
                       strokeWidth={2} 
                     />
                   ))}
@@ -144,23 +144,23 @@ export default function ExpenseChart({ expenses = [] }) {
                 <Legend 
                   verticalAlign="bottom" 
                   height={36} 
-                  formatter={(val) => <span className="text-xs text-slate-300 capitalize">{val}</span>} 
+                  formatter={(val) => <span className="text-xs text-zinc-400 capitalize">{val}</span>} 
                 />
               </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        {/* 2. Spending Velocity (Line Chart) */}
-        <div className="backdrop-blur-xl bg-[#0e1626]/80 border border-amber-500/20 rounded-3xl p-6 shadow-xl shadow-black/40 flex flex-col justify-between">
+        {/* 2. Spending Trajectory (Line Chart) */}
+        <div className="backdrop-blur-2xl bg-zinc-900/50 border border-white/[0.08] rounded-2xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              <div className="p-1.5 rounded-lg bg-zinc-800 text-zinc-300">
                 <TrendingUp className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-amber-100 font-serif-luxury tracking-wide">Expenditure Trajectory</h4>
-                <p className="text-xs text-slate-400">Chronological outflow pattern</p>
+                <h4 className="text-sm font-semibold text-white tracking-tight">Spending Trajectory</h4>
+                <p className="text-xs text-zinc-400">Daily outflow trend</p>
               </div>
             </div>
           </div>
@@ -168,18 +168,18 @@ export default function ExpenseChart({ expenses = [] }) {
           <div className="w-full h-72">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={lineData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1c2536" />
-                <XAxis dataKey="date" stroke="#64748b" tick={{ fontSize: 11 }} />
-                <YAxis stroke="#64748b" tick={{ fontSize: 11 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
+                <XAxis dataKey="date" stroke="#71717a" tick={{ fontSize: 11 }} />
+                <YAxis stroke="#71717a" tick={{ fontSize: 11 }} />
                 <Tooltip content={<CustomTooltip />} />
                 <Line 
                   type="monotone" 
                   dataKey="amount" 
                   name="Expense"
-                  stroke="#d4af37" 
-                  strokeWidth={2.5} 
-                  dot={{ fill: "#f3e5ab", r: 4 }} 
-                  activeDot={{ r: 6, fill: "#d4af37" }} 
+                  stroke="#ffffff" 
+                  strokeWidth={2} 
+                  dot={{ fill: "#38bdf8", r: 3.5 }} 
+                  activeDot={{ r: 5, fill: "#ffffff" }} 
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -187,15 +187,15 @@ export default function ExpenseChart({ expenses = [] }) {
         </div>
 
         {/* 3. Category Comparison (Bar Chart) */}
-        <div className="backdrop-blur-xl bg-[#0e1626]/80 border border-amber-500/20 rounded-3xl p-6 shadow-xl shadow-black/40 flex flex-col justify-between">
+        <div className="backdrop-blur-2xl bg-zinc-900/50 border border-white/[0.08] rounded-2xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              <div className="p-1.5 rounded-lg bg-zinc-800 text-zinc-300">
                 <BarChart3 className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-amber-100 font-serif-luxury tracking-wide">Category Comparison</h4>
-                <p className="text-xs text-slate-400">Volume disbursement per classification</p>
+                <h4 className="text-sm font-semibold text-white tracking-tight">Comparison by Category</h4>
+                <p className="text-xs text-zinc-400">Total volume per bucket</p>
               </div>
             </div>
           </div>
@@ -203,15 +203,15 @@ export default function ExpenseChart({ expenses = [] }) {
           <div className="w-full h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={categoryData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1c2536" />
-                <XAxis dataKey="name" stroke="#64748b" tick={{ fontSize: 11 }} />
-                <YAxis stroke="#64748b" tick={{ fontSize: 11 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
+                <XAxis dataKey="name" stroke="#71717a" tick={{ fontSize: 11 }} />
+                <YAxis stroke="#71717a" tick={{ fontSize: 11 }} />
                 <Tooltip content={<CustomTooltip />} />
                 <Bar 
                   dataKey="value" 
                   name="Total Spent"
-                  fill="#d4af37" 
-                  radius={[6, 6, 0, 0]} 
+                  fill="#38bdf8" 
+                  radius={[5, 5, 0, 0]} 
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -219,15 +219,15 @@ export default function ExpenseChart({ expenses = [] }) {
         </div>
 
         {/* 4. Day-wise Outflow Density (Scatter Plot) */}
-        <div className="backdrop-blur-xl bg-[#0e1626]/80 border border-amber-500/20 rounded-3xl p-6 shadow-xl shadow-black/40 flex flex-col justify-between">
+        <div className="backdrop-blur-2xl bg-zinc-900/50 border border-white/[0.08] rounded-2xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              <div className="p-1.5 rounded-lg bg-zinc-800 text-zinc-300">
                 <ScatterIcon className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-amber-100 font-serif-luxury tracking-wide">Disbursement Dispersion</h4>
-                <p className="text-xs text-slate-400">Day of month vs transaction magnitude</p>
+                <h4 className="text-sm font-semibold text-white tracking-tight">Expense Distribution</h4>
+                <p className="text-xs text-zinc-400">Transaction date vs magnitude</p>
               </div>
             </div>
           </div>
@@ -235,11 +235,11 @@ export default function ExpenseChart({ expenses = [] }) {
           <div className="w-full h-72">
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid stroke="#1c2536" />
-                <XAxis type="number" dataKey="x" name="Day of Month" stroke="#64748b" tick={{ fontSize: 11 }} />
-                <YAxis type="number" dataKey="y" name="Amount" stroke="#64748b" tick={{ fontSize: 11 }} />
+                <CartesianGrid stroke="#27272a" />
+                <XAxis type="number" dataKey="x" name="Day of Month" stroke="#71717a" tick={{ fontSize: 11 }} />
+                <YAxis type="number" dataKey="y" name="Amount" stroke="#71717a" tick={{ fontSize: 11 }} />
                 <Tooltip content={<CustomTooltip prefix="₹" />} />
-                <Scatter name="Transactions" data={scatterData} fill="#f59e0b" />
+                <Scatter name="Transactions" data={scatterData} fill="#fb923c" />
               </ScatterChart>
             </ResponsiveContainer>
           </div>
