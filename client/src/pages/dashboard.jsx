@@ -6,11 +6,11 @@ import ExpenseForm from "../components/Expenseform";
 import Expenseslist from "../components/Expenseslist";
 import dashboardBg from "../assets/dashboard.png";
 import { 
-  Sparkles, 
   LogOut, 
   Wallet, 
   PlusCircle, 
-  BarChart2
+  BarChart3,
+  Landmark
 } from "lucide-react";
 
 export default function Dashboard() {
@@ -92,53 +92,49 @@ export default function Dashboard() {
 
   return (
     <div 
-      className="min-h-screen bg-slate-950 text-slate-100 flex flex-col relative overflow-x-hidden bg-cover bg-fixed bg-center selection:bg-cyan-500/30 selection:text-cyan-200"
+      className="min-h-screen bg-[#070b14] text-slate-100 flex flex-col relative overflow-x-hidden bg-cover bg-fixed bg-center selection:bg-amber-500/30 selection:text-amber-200"
       style={{ backgroundImage: `url("${dashboardBg}")` }}
     >
-      {/* Background glass overlay for high contrast and readability */}
-      <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-[2px] pointer-events-none" />
+      {/* Editorial dark glass overlay for crisp readability */}
+      <div className="absolute inset-0 bg-[#070b14]/85 backdrop-blur-[2px] pointer-events-none" />
 
-      {/* Ambient glowing backdrop lights */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
-
-      {/* Top Navbar */}
-      <header className="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/85 border-b border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-          {/* Brand Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-violet-500 p-0.5 shadow-lg shadow-cyan-500/20">
-              <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-cyan-400">
-                <Sparkles className="w-5 h-5" />
+      {/* Top Luxury Navbar */}
+      <header className="sticky top-0 z-40 backdrop-blur-xl bg-[#090f1b]/90 border-b border-amber-500/20 shadow-lg shadow-black/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
+          {/* Brand Emblem */}
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#d4af37] via-[#f3e5ab] to-[#d4af37] p-0.5 shadow-md shadow-amber-950/50">
+              <div className="w-full h-full bg-[#080d16] rounded-[14px] flex items-center justify-center text-amber-400">
+                <Landmark className="w-5 h-5" />
               </div>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg font-extrabold tracking-tight text-white">
-                  Expense<span className="text-cyan-400">AI</span>
+                <h1 className="font-serif-luxury text-xl font-bold tracking-wider text-amber-100 italic">
+                  Expense Ledger
                 </h1>
-                <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-semibold uppercase tracking-wider">
-                  Pro
+                <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[10px] font-semibold uppercase tracking-widest">
+                  Executive
                 </span>
               </div>
-              <p className="hidden sm:block text-[11px] text-slate-400">Intelligent Budget & Expense Forecast</p>
+              <p className="hidden sm:block text-[11px] text-slate-400 tracking-wide">Personal Capital Management & Spending Ledger</p>
             </div>
           </div>
 
-          {/* Right actions: Salary Badge & Logout */}
+          {/* Right Actions: Budget Badge & Logout */}
           <div className="flex items-center gap-3">
             {salary > 0 && (
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs">
-                <Wallet className="w-3.5 h-3.5 text-cyan-400" />
-                <span className="text-slate-400">Budget:</span>
-                <span className="font-bold text-white">₹{salary.toLocaleString("en-IN")}</span>
+              <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0e1626] border border-amber-500/20 text-xs shadow-sm">
+                <Wallet className="w-3.5 h-3.5 text-amber-400" />
+                <span className="text-slate-400">Monthly Budget:</span>
+                <span className="font-bold text-amber-200">₹{salary.toLocaleString("en-IN")}</span>
               </div>
             )}
 
             <button
               type="button"
               onClick={handleLogout}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-rose-500/10 border border-slate-800 hover:border-rose-500/30 text-slate-400 hover:text-rose-400 text-xs font-semibold transition-all duration-200 cursor-pointer shadow-sm"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#0e1626] hover:bg-rose-950/40 border border-slate-700/60 hover:border-rose-500/40 text-slate-300 hover:text-rose-300 text-xs font-semibold transition-all duration-200 cursor-pointer shadow-sm"
               title="Sign out of account"
             >
               <LogOut className="w-3.5 h-3.5" />
@@ -150,13 +146,13 @@ export default function Dashboard() {
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 z-10">
-        {/* Quick Add Expense Card */}
-        <section className="backdrop-blur-xl bg-slate-900/75 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl">
+        {/* Quick Add Transaction Section */}
+        <section className="backdrop-blur-xl bg-[#0e1626]/80 border border-amber-500/20 rounded-3xl p-5 sm:p-6 shadow-xl shadow-black/40">
           <div className="flex items-center gap-2 mb-4">
-            <div className="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
               <PlusCircle className="w-4 h-4" />
             </div>
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">Quick Add Transaction</h2>
+            <h2 className="text-xs font-bold text-amber-200 uppercase tracking-widest font-serif-luxury">Record New Outflow</h2>
           </div>
 
           <ExpenseForm
@@ -168,24 +164,26 @@ export default function Dashboard() {
           />
         </section>
 
-        {/* Prominent Visual Analytics & Charts Section (Pie, Line, Bar, Scatter) */}
+        {/* Visual Analytics & Portfolio Charts Section */}
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                <BarChart2 className="w-4 h-4" />
+              <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                <BarChart3 className="w-4 h-4" />
               </div>
-              <h2 className="text-base font-bold text-white tracking-tight">Visual Analytics & Charts</h2>
+              <h2 className="font-serif-luxury text-lg font-bold text-amber-100 tracking-wide">
+                Portfolio Analytics & Expense Breakdown
+              </h2>
             </div>
-            <span className="text-xs text-slate-400">Real-time Category, Trend, Comparison & Scatter</span>
+            <span className="text-xs text-slate-400 tracking-wide">Category Distribution, Trajectory & Outflow Matrix</span>
           </div>
 
           <ExpenseChart expenses={expenses} />
         </section>
 
-        {/* AI Copilot & Recent Transactions in Responsive Grid */}
+        {/* Capital Analysis & Transaction Ledger in Responsive Grid */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* AI Prediction & Budget Analysis Card (5 cols on large screens) */}
+          {/* Capital Analysis Card (5 cols) */}
           <div className="lg:col-span-5">
             <PredictionCard
               prediction={prediction}
@@ -195,7 +193,7 @@ export default function Dashboard() {
             />
           </div>
 
-          {/* Recent Transactions List (7 cols on large screens) */}
+          {/* Transaction Ledger (7 cols) */}
           <div className="lg:col-span-7">
             <Expenseslist
               expenses={expenses}
@@ -205,11 +203,11 @@ export default function Dashboard() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="mt-auto border-t border-slate-800/60 py-6 text-center text-xs text-slate-500">
+      {/* Luxury Minimal Footer */}
+      <footer className="mt-auto border-t border-amber-500/10 py-6 text-center text-xs text-slate-400 bg-[#070b14]/90">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>AI Expense Tracker • Intelligent Financial Management</span>
-          <span className="text-slate-600">Tailwind CSS v4 & React</span>
+          <span className="font-serif-luxury tracking-wide text-slate-300">Expense Ledger • Executive Wealth Management</span>
+          <span className="text-amber-500/60 font-mono text-[11px]">Refined Wealth Edition</span>
         </div>
       </footer>
     </div>
