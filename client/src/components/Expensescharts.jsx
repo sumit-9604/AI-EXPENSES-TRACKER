@@ -2,8 +2,7 @@ import {
   PieChart as PieIcon, 
   TrendingUp, 
   BarChart3, 
-  ScatterChart as ScatterIcon,
-  Sparkles
+  ScatterChart as ScatterIcon 
 } from "lucide-react";
 import { 
   PieChart, 
@@ -42,15 +41,6 @@ const PALETTE = [
   "#0D9488"  // Emerald Teal
 ];
 
-// Fallback demo data shown when the user has not logged any expenses yet
-const DEMO_EXPENSES = [
-  { category: "food", amount: 3500, createdAt: new Date(Date.now() - 86400000 * 5).toISOString() },
-  { category: "bills", amount: 6200, createdAt: new Date(Date.now() - 86400000 * 4).toISOString() },
-  { category: "shopping", amount: 2800, createdAt: new Date(Date.now() - 86400000 * 3).toISOString() },
-  { category: "travel", amount: 1500, createdAt: new Date(Date.now() - 86400000 * 2).toISOString() },
-  { category: "other", amount: 950, createdAt: new Date(Date.now() - 86400000 * 1).toISOString() },
-];
-
 // High contrast light tooltip component
 const CustomTooltip = ({ active, payload, label, prefix = "₹" }) => {
   if (active && payload && payload.length) {
@@ -74,12 +64,26 @@ const CustomTooltip = ({ active, payload, label, prefix = "₹" }) => {
 };
 
 export default function ExpenseChart({ expenses = [] }) {
-  const isDemo = !expenses || expenses.length === 0;
-  const activeExpenses = isDemo ? DEMO_EXPENSES : expenses;
+  // Only display charts if user has actually entered expense data
+  if (!expenses || expenses.length === 0) {
+    return (
+      <div className="bg-white border border-[#DCCFC0] rounded-3xl p-8 sm:p-12 text-center shadow-[0_4px_20px_-4px_rgba(89,121,40,0.08)] flex flex-col items-center justify-center text-[#597928]">
+        <div className="w-16 h-16 rounded-2xl bg-[#FDF6ED] flex items-center justify-center text-[#597928] mb-4 border border-[#DCCFC0]">
+          <BarChart3 className="w-8 h-8" />
+        </div>
+        <h3 className="text-base sm:text-lg font-black text-[#597928] uppercase tracking-wide">
+          No Expense Records Yet
+        </h3>
+        <p className="text-xs sm:text-sm font-semibold text-[#597928]/75 mt-1.5 max-w-md">
+          Log a transaction using the form above to display your real-time category distribution, spending velocity, and outflow analytics.
+        </p>
+      </div>
+    );
+  }
 
-  // Aggregate by Category
+  // Aggregate user's actual input data by Category
   const categoryData = Object.values(
-    activeExpenses.reduce((acc, e) => {
+    expenses.reduce((acc, e) => {
       const catKey = e.category || "other";
       const name = catKey.charAt(0).toUpperCase() + catKey.slice(1);
       acc[catKey] = acc[catKey] || {
@@ -92,16 +96,16 @@ export default function ExpenseChart({ expenses = [] }) {
     }, {})
   );
 
-  // Chronological Area Trend
-  const lineData = [...activeExpenses]
+  // Chronological Area Trend from user's actual expenses
+  const lineData = [...expenses]
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
     .map(e => ({
       date: new Date(e.createdAt).toLocaleDateString("en-IN", { month: "short", day: "numeric" }),
       amount: Number(e.amount)
     }));
 
-  // Scatter distribution
-  const scatterData = activeExpenses.map(e => ({
+  // Scatter distribution from user's actual expenses
+  const scatterData = expenses.map(e => ({
     x: new Date(e.createdAt).getDate(),
     y: Number(e.amount),
     z: Number(e.amount)
@@ -109,18 +113,6 @@ export default function ExpenseChart({ expenses = [] }) {
 
   return (
     <div className="space-y-6 text-[#597928]">
-      {isDemo && (
-        <div className="flex items-center justify-between p-4 rounded-2xl bg-white border border-[#DCCFC0] shadow-sm text-xs sm:text-sm font-bold text-[#597928]">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#597928]" />
-            <span>Interactive Sample Charts. Add your personal expenses above to watch your analytics update in real time!</span>
-          </div>
-          <span className="px-3 py-1 rounded-lg bg-[#597928] text-white font-black text-xs uppercase shadow-sm">
-            Live Demo
-          </span>
-        </div>
-      )}
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 1. Category Distribution (Pie/Donut Chart) */}
         <div className="bg-white border border-[#DCCFC0] rounded-3xl p-6 sm:p-7 shadow-[0_8px_30px_rgba(89,121,40,0.08)] hover:shadow-[0_12px_35px_rgba(89,121,40,0.14)] transition-all flex flex-col justify-between">
